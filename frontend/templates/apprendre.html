@@ -1,0 +1,242 @@
+{%extends "base.html"%}{%load static%}{% block corpsDeLaPage %}
+<section class="heading-page header-text" id="top">
+    <div class="container">
+        <div class="row">
+            <div class="search-container">
+                <form action="" method="get" class="search-bar">
+                    <input
+                        type="text"
+                        name="q"
+                        id="search-input-barre"
+                        placeholder="Rechercher un cours, un domaine ou un thème..."
+                    />
+                    <button type="submit" class="search-rechercher">
+                        Rechercher
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container-card">
+    <!-- Sidebar -->
+    <aside class="sidebar-card">
+        <h2>FILTRER LES COURS</h2>
+        <div class="filter-section">
+            <h3>Nouveaux cours</h3>
+            <label><input type="checkbox" /> Nouveaux cours (216)</label>
+        </div>
+        {% comment %}
+        <div class="filter-section">
+            <h3>Disponibilité</h3>
+            <label
+                ><input type="checkbox" /> Ouvert pour inscription (162)</label
+            >
+            <label><input type="checkbox" /> Bientôt (55)</label>
+            <label><input type="checkbox" /> En cours (140)</label>
+            <label><input type="checkbox" /> Archivé (713)</label>
+        </div>
+        {% endcomment %}
+        <div class="filter-section">
+            <h3>Langues</h3>
+            {% for langue in langues %}
+            <label
+                ><input
+                    type="checkbox"
+                    class="filter-checkbox"
+                    value="{{langue.id}}"
+                />
+                {{langue.nom}}
+            </label>
+            {% endfor %}
+        </div>
+        <div class="filter-section">
+            <h3>Thématiques</h3>
+            {% for thematique in thematiques %}
+            <label
+                ><input
+                    type="checkbox"
+                    class="filter-checkbox-thematique"
+                    value="thematique{{thematique.id}}"
+                />
+                {{thematique.nom}}
+            </label>
+            {% endfor %}
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="header">
+            <p>
+                Résultats 1 à 9 sur {{cours.count}} cours correspondent à votre
+                recherche
+            </p>
+        </header>
+        <div class="courses" id="courses">
+            <!-- Cards -->
+            {% for cour in cours %}
+            <a href="{% url 'detail-cours' %}">
+                <div
+                    class="course-card"
+                    id="course-card"
+                    data-category="{{cour.langue_id}}"
+                    data-categoryy="thematique{{cour.thematique_id}}"
+                >
+                    <div
+                        class="course-image"
+                        style="
+                        background-image: url('/media/{{cour.photo_de_profil}}');
+                    "
+                    ></div>
+                    <div class="course-info">
+                        <h3>{{cour.titre}}</h3>
+                        <p>
+                            <strong>
+                                {{ cour.description|slice:":50" }}...
+                            </strong>
+                        </p>
+                        <span class="course-code">ID:{{cour.id}}</span>
+                    </div>
+                    <div class="course-footer">Ouvert à l'inscription</div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        <div class="pagination">
+            <ul>
+                <li>
+                    <a href="#"><i class="fa fa-angle-right"></i></a>
+                </li>
+            </ul>
+        </div>
+    </main>
+</div>
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'jquery/jquery.min.js'%}"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"
+></script>
+
+<!-- <script src="{%static 'assets/js/isotope.min.js'%}"></script> -->
+<script src="{%static 'assets/js/owl-carousel.js'%}"></script>
+<script src="{% static 'assets/js/lightbox.js'%}"></script>
+<script src="{% static 'assets/js/tabs.js' %}"></script>
+<!-- <script src="{% static 'assets/js/isotope.js'%}"></script> -->
+<script src="{% static 'assets/js/slick-slider.js'%}"></script>
+<!-- <script src="{% static 'assets/js/custom.js' %}"></script> -->
+<!-- Script pour la pagination -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const itemsPerPage = 9;
+        const itemsContainer = document.getElementById("courses");
+        const pagination = document.querySelector(".pagination ul");
+        const items = Array.from(itemsContainer.children); // Convert child nodes to an array
+        const totalPages = Math.ceil(items.length / itemsPerPage);
+
+        // Function to display items for the given page
+        const displayPage = (page) => {
+            // Hide all items first
+            items.forEach((item, index) => {
+                item.style.display = "none";
+            });
+
+            // Display items for the current page
+            const start = (page - 1) * itemsPerPage;
+            const end = page * itemsPerPage;
+            items.slice(start, end).forEach((item) => {
+                item.style.display = "block";
+            });
+
+            // Update active class in pagination
+            Array.from(pagination.children).forEach((li, index) => {
+                li.classList.toggle("active", index + 1 === page);
+            });
+        };
+
+        // Create pagination dynamically
+        const createPagination = () => {
+            for (let i = 1; i <= totalPages; i++) {
+                const li = document.createElement("li");
+                li.innerHTML = `<a href="#">${i}</a>`;
+                li.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    displayPage(i);
+                });
+                pagination.insertBefore(li, pagination.lastElementChild);
+            }
+
+            // Set initial active state
+            pagination.firstElementChild.classList.add("active");
+        };
+
+        // Next page functionality
+        const nextButton = pagination.querySelector("li:last-child");
+        nextButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            const activeIndex = Array.from(pagination.children).findIndex(
+                (li) => li.classList.contains("active")
+            );
+            if (activeIndex < totalPages - 1) {
+                displayPage(activeIndex + 2);
+            }
+        });
+
+        // Initialize
+        createPagination();
+        displayPage(1);
+    });
+</script>
+<script>
+    document
+        .getElementById("search-input-barre")
+        .addEventListener("change", function (event) {
+            const query = event.target.value.toLowerCase(); // Récupérer la valeur saisie en minuscules
+            const items = document.querySelectorAll("#courses .course-card"); // Sélectionner tous les éléments à filtrer
+
+            items.forEach((item) => {
+                const title = item
+                    .querySelector("h3")
+                    .textContent.toLowerCase(); // Récupérer le contenu de l'attribut title
+                if (title.includes(query)) {
+                    item.style.display = "block"; // Afficher l'élément s'il correspond
+                } else {
+                    item.style.display = "none"; // Masquer l'élément s'il ne correspond pas
+                }
+            });
+        });
+</script>
+<script>
+    document.querySelectorAll(".filter-checkbox").forEach((checkbox) => {
+        checkbox.addEventListener("change", () => {
+            // Récupérer toutes les checkbox cochées
+            const checkedValues = Array.from(
+                document.querySelectorAll(".filter-checkbox:checked")
+            ).map((cb) => cb.value);
+
+            // Récupérer tous les éléments à filtrer
+            const courseCards = document.querySelectorAll(".course-card");
+
+            // Parcourir les éléments et les filtrer
+
+            courseCards.forEach((card) => {
+                const categories = card
+                    .getAttribute("data-category")
+                    .split(" ");
+                console.log(categories);
+                if (
+                    checkedValues.length === 0 ||
+                    checkedValues.some((value) => categories.includes(value))
+                ) {
+                    card.style.display = "block"; // Afficher
+                } else {
+                    card.style.display = "none"; // Masquer
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.sidebar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 240px;
+    height: 100vh;
+    padding: 0;
+    color: #fff;
+    overflow: hidden;
+    transition: all 0.5s linear;
+    background-color: rgba(161, 70, 9);
+}
+
+.logo {
+    height: 80px;
+    padding: 0px;
+}
+
+.menu {
+    height: 88%;
+    position: relative;
+    list-style: none;
+    padding: 0;
+}
+
+.menu li {
+    padding: 0.8rem;
+    margin: 1px 0;
+    border-radius: 8px;
+    transition: all 0.5s ease-in-out;
+}
+
+.menu li:hover,
+.active {
+    background: #e0e0e058;
+}
+
+.menu li a span {
+    font-weight: bold;
+}
+.menu a {
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.menu a span {
+    overflow: hidden;
+}
+
+.menu a i {
+    font-size: 1.2rem;
+}
+
+.logout {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+/* Dashboard */
+#ajoutEvent div h2 {
+    text-align: center;
+}
+#div-dashboard-principale {
+    display: flex;
+}
+#div-dashboard-prime1 {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+#div-dashboard-prime {
+    margin-top: 50px;
+    margin-left: 2%;
+}
+.button-prime {
+    height: 40px;
+}
+.button-prime2 {
+    margin-top: 2%;
+    height: 40px;
+}
+.profile-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.profile-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 20px;
+}
+.profile-pic {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+.profile-info {
+    flex-grow: 1;
+}
+.profile-info h2 {
+    margin: 0;
+    font-size: 24px;
+}
+.profile-info p {
+    margin: 5px 0;
+    color: #555;
+    font-size: 15px;
+}
+.profile-body {
+    margin-top: 20px;
+}
+.profile-body p {
+    margin: 10px 0;
+    color: #333;
+    font-size: 12px;
+}
+div.profile-body p span {
+    font-weight: bold;
+}
+.profile-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.btn {
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+}
+.btn-secondary {
+    background-color: #6c757d;
+}

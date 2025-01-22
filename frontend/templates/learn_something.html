@@ -1,0 +1,434 @@
+{%extends "base.html"%} {%load static%} {%block corpsDeLaPage%}
+<!-- ***** Header Area End ***** -->
+
+{% comment %}
+<section class="heading-page header-text" id="top">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Evenements à venir</h2>
+                <h6>Tous les évenements culturels et artistiques à venir !</h6>
+            </div>
+        </div>
+    </div>
+</section>
+{% endcomment %}
+
+<section class="meetings-page" id="meetings">
+    <div class="container" id="container-apprendre-detail">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="filters">
+                            <ul>
+                                <li
+                                    data-filter="*"
+                                    class="active"
+                                    onclick="articlesSections()"
+                                >
+                                    Skills
+                                </li>
+                                <li
+                                    data-filter=".soon"
+                                    onclick="podcastSections()"
+                                >
+                                    Podcast
+                                </li>
+                                <li
+                                    data-filter=".imp"
+                                    onclick="imagesSections()"
+                                >
+                                    Images
+                                </li>
+                                <li
+                                    data-filter=".att"
+                                    onclick="videosSections()"
+                                >
+                                    Videos
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div
+                            class="search-container"
+                            id="search-container-articles"
+                        >
+                            <div
+                                class="content appr-content-uniq active"
+                                id="content-apprend"
+                            >
+                                <div class="">
+                                    <div class="related-questions">
+                                        <div class="question">
+                                            <div class="question-summary">
+                                                <span
+                                                    >Comment s'appelle le Bénin
+                                                    avant ?</span
+                                                >
+                                                <i
+                                                    class="fas fa-chevron-down"
+                                                ></i>
+                                            </div>
+                                            <div class="question-detail">
+                                                <p>
+                                                    Le Dahomey était le nom de
+                                                    l'actuel Bénin avant son
+                                                    indépendance en 1960.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="question">
+                                            <div class="question-summary">
+                                                <span
+                                                    >Quelles sont les étapes de
+                                                    la décolonisation au Dahomey
+                                                    ?</span
+                                                >
+                                                <i
+                                                    class="fas fa-chevron-down"
+                                                ></i>
+                                            </div>
+                                            <div class="question-detail">
+                                                <p>
+                                                    Les étapes incluent des
+                                                    réformes administratives, la
+                                                    montée des mouvements
+                                                    nationalistes, et les
+                                                    négociations avec la France
+                                                    aboutissant à l'indépendance
+                                                    en 1960.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="question">
+                                            <div class="question-summary">
+                                                <span
+                                                    >Quels sont les deux moyens
+                                                    pour obtenir l'indépendance
+                                                    ?</span
+                                                >
+                                                <i
+                                                    class="fas fa-chevron-down"
+                                                ></i>
+                                            </div>
+                                            <div class="question-detail">
+                                                <p>
+                                                    Les deux moyens principaux
+                                                    sont la négociation
+                                                    pacifique et la lutte armée.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="question">
+                                            <div class="question-summary">
+                                                <span
+                                                    >Bon bah on test voir ce que
+                                                    ça donne ...</span
+                                                >
+                                                <i
+                                                    class="fas fa-chevron-down"
+                                                ></i>
+                                            </div>
+                                            <div class="question-detail">
+                                                <p>
+                                                    T'inquiètre bg ça fonctionne
+                                                    ...
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Podcast-->
+                        <div id="search-container-podcast">
+                            <div class="content appr-content-uniq active" id="">
+                                <div class="something">
+                                    <div class="related-questions">
+                                        <!-- Un podcast 
+                                        <div class="podcast-image" style="background-image: url('{{ podcast.image.url }}');"></div>
+ 
+                                        -->
+                                        <div class="podcast-player">
+                                            <div class="podcast-image"></div>
+
+                                            <div class="podcast-content">
+                                                <div class="podcast-title">
+                                                    Titre du Podcast
+                                                </div>
+                                                <div
+                                                    class="podcast-description"
+                                                >
+                                                    Description courte du
+                                                    podcast, histoire d'attirer
+                                                    l'intérêt de l'utilisateur.
+                                                </div>
+
+                                                <div
+                                                    class="bouton-ecouter"
+                                                    id="bouton-ecouter"
+                                                >
+                                                    <img
+                                                        src="{% static 'assets/images/bouton-jouer.png'%}"
+                                                        alt=""
+                                                        class="podcast-img"
+                                                        id="podcast-img"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Images-->
+                        <div
+                            class="search-container"
+                            id="search-container-images"
+                        >
+                            <div class="content appr-content-uniq active" id="">
+                                <div class="">
+                                    <div class="related-questions">
+                                        <div class="question">
+                                            <div class="question-summary">
+                                                <span>images ?</span>
+                                                <i
+                                                    class="fas fa-chevron-down"
+                                                ></i>
+                                            </div>
+                                            <div class="question-detail">
+                                                <p>
+                                                    Le Dahomey était le nom de
+                                                    l'actuel Bénin avant son
+                                                    indépendance en 1960.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="question">
+                                            <div class="question-summary">
+                                                <span
+                                                    >Quelles sont les étapes de
+                                                    la décolonisation au Dahomey
+                                                    ?</span
+                                                >
+                                                <i
+                                                    class="fas fa-chevron-down"
+                                                ></i>
+                                            </div>
+                                            <div class="question-detail">
+                                                <p>
+                                                    Les étapes incluent des
+                                                    réformes administratives, la
+                                                    montée des mouvements
+                                                    nationalistes, et les
+                                                    négociations avec la France
+                                                    aboutissant à l'indépendance
+                                                    en 1960.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="question">
+                                            <div class="question-summary">
+                                                <span
+                                                    >Quels sont les deux moyens
+                                                    pour obtenir l'indépendance
+                                                    ?</span
+                                                >
+                                                <i
+                                                    class="fas fa-chevron-down"
+                                                ></i>
+                                            </div>
+                                            <div class="question-detail">
+                                                <p>
+                                                    Les deux moyens principaux
+                                                    sont la négociation
+                                                    pacifique et la lutte armée.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="question">
+                                            <div class="question-summary">
+                                                <span
+                                                    >Bon bah on test voir ce que
+                                                    ça donne ...</span
+                                                >
+                                                <i
+                                                    class="fas fa-chevron-down"
+                                                ></i>
+                                            </div>
+                                            <div class="question-detail">
+                                                <p>
+                                                    T'inquiètre bg ça fonctionne
+                                                    ...
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--Videos-->
+                        <div
+                            class="search-container"
+                            id="search-container-videos"
+                        >
+                            <div class="content appr-content-uniq active" id="">
+                                <div class="">
+                                    <div class="related-questions">
+                                        <div class="question">
+                                            <div class="question-summary">
+                                                <span>Videos ?</span>
+                                                <i
+                                                    class="fas fa-chevron-down"
+                                                ></i>
+                                            </div>
+                                            <div class="question-detail">
+                                                <p>
+                                                    Le Dahomey était le nom de
+                                                    l'actuel Bénin avant son
+                                                    indépendance en 1960.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="question">
+                                            <div class="question-summary">
+                                                <span
+                                                    >Quelles sont les étapes de
+                                                    la décolonisation au Dahomey
+                                                    ?</span
+                                                >
+                                                <i
+                                                    class="fas fa-chevron-down"
+                                                ></i>
+                                            </div>
+                                            <div class="question-detail">
+                                                <p>
+                                                    Les étapes incluent des
+                                                    réformes administratives, la
+                                                    montée des mouvements
+                                                    nationalistes, et les
+                                                    négociations avec la France
+                                                    aboutissant à l'indépendance
+                                                    en 1960.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="question">
+                                            <div class="question-summary">
+                                                <span
+                                                    >Quels sont les deux moyens
+                                                    pour obtenir l'indépendance
+                                                    ?</span
+                                                >
+                                                <i
+                                                    class="fas fa-chevron-down"
+                                                ></i>
+                                            </div>
+                                            <div class="question-detail">
+                                                <p>
+                                                    Les deux moyens principaux
+                                                    sont la négociation
+                                                    pacifique et la lutte armée.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="question">
+                                            <div class="question-summary">
+                                                <span
+                                                    >Bon bah on test voir ce que
+                                                    ça donne ...</span
+                                                >
+                                                <i
+                                                    class="fas fa-chevron-down"
+                                                ></i>
+                                            </div>
+                                            <div class="question-detail">
+                                                <p>
+                                                    T'inquiètre bg ça fonctionne
+                                                    ...
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Fin de liste-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Scripts -->
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'jquery/jquery.min.js'%}"></script>
+<script src="{%static 'bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+
+<script src="{%static 'assets/js/isotope.min.js'%}"></script>
+<script src="{%static 'assets/js/owl-carousel.js'%}"></script>
+<script src="{% static 'assets/js/lightbox.js'%}"></script>
+<script src="{% static 'assets/js/tabs.js' %}"></script>
+<script src="{% static 'assets/js/isotope.js'%}"></script>
+<script src="{% static 'assets/js/video.js' %}"></script>
+<script src="{% static 'assets/js/slick-slider.js'%}"></script>
+<script src="{% static 'assets/js/custom.js' %}"></script>
+<script src="{% static 'assets/js/apprendre.js'%}"></script>
+<script>
+    // according to loftblog tut
+    $(".nav li:first").addClass("active");
+
+    // fonctions qui au click sur articles fermes les autres menus
+    var articlesSections = function () {
+        document.getElementById("search-container-articles").style.display =
+            "block";
+        document.getElementById("search-container-podcast").style.display =
+            "none";
+        document.getElementById("search-container-images").style.display =
+            "none";
+        document.getElementById("search-container-videos").style.display =
+            "none";
+    };
+
+    // fonctions qui au click sur podcast fermes les autres menus
+    var podcastSections = function () {
+        document.getElementById("search-container-articles").style.display =
+            "none";
+        document.getElementById("search-container-podcast").style.display =
+            "block";
+        document.getElementById("search-container-images").style.display =
+            "none";
+        document.getElementById("search-container-videos").style.display =
+            "none";
+    };
+
+    // fonctions qui au click sur images fermes les autres menus
+    var imagesSections = function () {
+        document.getElementById("search-container-articles").style.display =
+            "none";
+        document.getElementById("search-container-podcast").style.display =
+            "none";
+        document.getElementById("search-container-images").style.display =
+            "block";
+        document.getElementById("search-container-videos").style.display =
+            "none";
+    };
+
+    // fonctions qui au click sur videos fermes les autres menus
+    var videosSections = function () {
+        document.getElementById("search-container-articles").style.display =
+            "none";
+        document.getElementById("search-container-podcast").style.display =
+            "none";
+        document.getElementById("search-container-images").style.display =
+            "none";
+        document.getElementById("search-container-videos").style.display =
+            "bloack";
+    };
+</script>
+{%endblock%}

@@ -1,0 +1,1116 @@
+{%extends "base.html"%} {%load static%} {% block corpsDeLaPage%}
+<!-- ***** Main Banner Area Start ***** -->
+{% if messages %}
+<div class="messages" id="bande">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} mt-2" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+<section class="section main-banner world" id="top" data-section="section1">
+    <video autoplay muted loop id="bg-video">
+        <source
+            src="{%static 'assets/images/course-video.mp4' %}"
+            type="video/mp4"
+        />
+    </video>
+
+    <div class="video-overlay header-text">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="caption" id="main-caption">
+                        <h2>BIENVENUE SUR WASANGARI !</h2>
+                        <p>
+                            Explorez les merveilles culturelles et artistiques
+                            du Bénin. Apprenez, découvrez et visitez
+                            virtuellement les trésors culturels et artistiques
+                            du Bénin.
+                        </p>
+                        {%if not user.is_authenticated%}
+                        <div class="main-button-red">
+                            <div class="scroll-to-section">
+                                <a href="#se-connecter">CONNEXION</a>
+                            </div>
+                            <div class="scroll-to-section">
+                                <a href="#s-inscrire">INSCRIPTION</a>
+                            </div>
+                        </div>
+                        {%endif%}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Main Banner Area End ***** -->
+
+<section class="services world">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="owl-service-item owl-carousel">
+                    <div class="item">
+                        <div class="icon">
+                            <img
+                                src="{%static 'assets/images/apprendre.png'%}"
+                                alt=""
+                            />
+                        </div>
+                        <div class="down-content">
+                            <h4>Apprendre</h4>
+                            <p>
+                                Dans cette section, l'apprentissage actif est
+                                encouragé à travers des activités interactives,
+                                jeux, quiz et défis sur la culture béninoise,
+                                permettant aux utilisateurs de tester leurs
+                                connaissances et développer des compétences.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="icon">
+                            <img
+                                src="{%static 'assets/images/loupe.png' %}"
+                                alt=""
+                            />
+                        </div>
+                        <div class="down-content">
+                            <h4>Découvrir</h4>
+                            <p>
+                                Découvrez des contenus audiovisuels sur les
+                                richesses culturelles du Bénin, incluant
+                                mini-docs, vidéos et podcasts, classés par
+                                thématiques et régions. Accédez-y en ligne ou
+                                téléchargez-les, gratuitement ou payant.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="icon">
+                            <img
+                                src="{%static 'assets/images/visite.png'%}"
+                                alt=""
+                            />
+                        </div>
+                        <div class="down-content">
+                            <h4>Visiter</h4>
+                            <p>
+                                Explorez le patrimoine culturel du Bénin à
+                                travers une visite virtuelle, découvrant ses
+                                sites historiques, monuments, musées, réserves
+                                naturelles et parcs nationaux, témoins de sa
+                                riche biodiversité et histoire.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="icon">
+                            <img
+                                src="{%static 'assets/images/explorer.png'%}"
+                                alt=""
+                            />
+                        </div>
+                        <div class="down-content">
+                            <h4>Explorer</h4>
+                            <p>
+                                Explorez notre banque d’images sur le patrimoine
+                                culturel et touristique du Bénin, présentant des
+                                photos de qualité, classées par thématiques et
+                                régions, avec des légendes explicatives
+                                enrichissantes pour chaque image.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="icon">
+                            <img
+                                src="{%static 'assets/images/acheter.png'%}"
+                                alt=""
+                            />
+                        </div>
+                        <div class="down-content">
+                            <h4>Acheter</h4>
+                            <p>
+                                Acquérez des produits culturels et artistiques
+                                du Bénin, comme textiles, sculptures, bijoux et
+                                objets d'art, témoignant du savoir-faire des
+                                artisans locaux et soutenant leur travail tout
+                                en préservant l'héritage culturel.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="icon">
+                            <img
+                                src="{%static 'assets/images/evenement.png'%}"
+                                alt=""
+                            />
+                        </div>
+                        <div class="down-content">
+                            <h4>Evenements</h4>
+                            <p>
+                                Découvrez les événements culturels à venir au
+                                Bénin : festivals, concerts, expositions et
+                                conférences. Ne manquez pas ces occasions de
+                                célébrer la culture béninoise tout au long de
+                                l'année, à l’échelle locale et internationale.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="upcoming-meetings world" id="meetings">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-heading">
+                    <h2>.....</h2>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="categories">
+                    <h4>Visites immersives</h4>
+                    <ul>
+                        <li><a href="{%url 'sites'%}">Sites historiques</a></li>
+                        <li><a href="{%url 'monuments'%}">Monuments</a></li>
+                        <li><a href="{%url 'musees'%}">Musées</a></li>
+                        <li><a href="{%url 'parcs'%}">Parcs national</a></li>
+                        <li><a href="{%url 'reserve'%}">Reserves</a></li>
+                    </ul>
+                    <div class="main-button-red">
+                        <a href="#">VOIR TOUT</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="meeting-item">
+                            <div class="thumb">
+                                <div class="price"></div>
+                                <img
+                                    src="{%static 'assets/images/dall.jpg'%}"
+                                    alt="New Lecturer Meeting"
+                                />
+                            </div>
+                            <div class="down-content">
+                                <h4>Apprentissage</h4>
+                                <p>
+                                    Cette section vous permet de développer et
+                                    renforcer vos connaissances sur la culture
+                                    béninoise.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="meeting-item">
+                            <div class="thumb">
+                                <div class="price"></div>
+                                <img
+                                    src="{%static 'assets/images/decouverte.webp'%}"
+                                    alt="Online Teaching"
+                                />
+                            </div>
+                            <div class="down-content">
+                                <h4>Découverte</h4>
+                                <p>
+                                    Cette section met à votre disposition des
+                                    contenus audiovisuels, mettant en valeur la
+                                    richesse culturelle du pays.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="meeting-item">
+                            <div class="thumb">
+                                <div class="price"></div>
+                                <img
+                                    src="{%static 'assets/images/gaani.jpg'%}"
+                                    alt="Higher Education"
+                                />
+                            </div>
+                            <div class="down-content">
+                                <a href="{%url 'explorer'%}">
+                                    <h4>Explorer</h4>
+                                </a>
+                                <p>
+                                    Cette section est une banque d'images dédiée
+                                    au patrimoine culturels et touristique du
+                                    Bénin.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="meeting-item">
+                            <div class="thumb">
+                                <div class="price"></div>
+                                <img
+                                    src="{%static 'assets/images/decouverte.webp'%}"
+                                    alt="Student Training"
+                                />
+                            </div>
+                            <div class="down-content">
+                                <a href="{%url 'acheter'%}"><h4>Acheter</h4></a>
+                                <p>
+                                    Dans cette section, nous mettons en lumière
+                                    des œuvres d'art uniques, réalisées avec
+                                    passion et créativité par des artistes
+                                    locaux.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="apply-now world" id="apply">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 align-self-center">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="item">
+                            <h3>NOUS CONTACTER</h3>
+                            <p>
+                                En cliquant sur ce bouton vous trouverez
+                                différente façon d'entrer en contact avec nous.
+                            </p>
+                            <div
+                                class="main-button-yellow"
+                                id="open-popup"
+                                onclick="ouvrirPopup()"
+                            >
+                                <div class="scroll-to-section">
+                                    <p>Cliquez ici !</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="item">
+                            <h3>PARTAGEZ AVEC VOTRE ENTOURAGE !</h3>
+                            <p>
+                                En cliquant sur ce bouton, on vous offre la
+                                possibilité de partager l'adresse de la
+                                plateforme avec votre entourage et sur vos
+                                réseaux sociaux.
+                            </p>
+                            <div
+                                class="main-button-yellow"
+                                id="open-popup-partager"
+                                onClick="ouvrirPopupPartage()"
+                            >
+                                <div class="scroll-to-section">
+                                    <p>Partager !</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="accordions is-first-expanded">
+                    <article class="accordion">
+                        <div class="accordion-head">
+                            <span>A propos de Wasangari</span>
+                            <span class="icon">
+                                <i class="icon fa fa-chevron-right"></i>
+                            </span>
+                        </div>
+                        <div class="accordion-body">
+                            <div class="content">
+                                Wasangari est une plateforme dédiée à la
+                                valorisation, à la révélation et la promotion du
+                                potentiel culturel du Bénin. Projet appartenant
+                                à la structure
+                                <a href="www.waxangarilabs.org"
+                                    >Waxangari l@bs</a
+                                >
+                            </div>
+                        </div>
+                    </article>
+                    <article class="accordion">
+                        <div class="accordion-head">
+                            <span>A quoi sert Wasangari ?</span>
+                            <span class="icon">
+                                <i class="icon fa fa-chevron-right"></i>
+                            </span>
+                        </div>
+                        <div class="accordion-body">
+                            <div class="content">
+                                Vous pouvez:
+                                <ul style="list-style-type: circle">
+                                    <li>
+                                        développer votre culture sur le Bénin
+                                    </li>
+                                    <li>
+                                        découvrir les articles et les news sur
+                                        le Bénin
+                                    </li>
+                                    <li>
+                                        Visiter virtuellement les sites
+                                        historiques
+                                    </li>
+                                    <li>
+                                        Visiter virtuellement monuments /
+                                        reserves / parcs national
+                                    </li>
+                                    <li>Exposer et acheter des objets d'art</li>
+                                    <li>
+                                        Acheter vos tickets pour les événements
+                                        culturel d'envergure du pays
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="accordion last-accordion">
+                        <div class="accordion-head">
+                            <span> Partager avec votre entourage</span>
+                            <span class="icon">
+                                <i class="icon fa fa-chevron-right"></i>
+                            </span>
+                        </div>
+                        <div class="accordion-body">
+                            <div class="content">
+                                <p>
+                                    Faites découvrir notre site à vos amis et
+                                    votre famille ! Que ce soit pour échanger
+                                    des idées, des conseils ou simplement
+                                    partager votre enthousiasme, vous pouvez
+                                    leur parler de notre contenu et les inviter
+                                    à nous rejoindre. Ensemble, explorez,
+                                    apprenez et partagez des moments uniques.
+                                    N'hésitez pas à en parler autour de vous et
+                                    à faire passer le mot !
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- contenu popup nous contacter -->
+    <div class="popup-overlay" id="popup-overlay">
+        <div class="popup-content">
+            <h2>NOUS CONTACTER</h2>
+            <div class="contact-icon">
+                <img
+                    src="{% static 'assets/images/appel.png'%}"
+                    alt="appel-icon"
+                />
+                <a href="tel:002290153454242">(+229) 0153454242</a>
+            </div>
+            <div class="contact-icon">
+                <img
+                    src="{% static 'assets/images/email.png'%}"
+                    alt="email-icon"
+                />
+                <a href="mailto:plateformewassangari@gmail.com"
+                    >plateformewassangari@gmail.com</a
+                >
+            </div>
+            <div class="contact-icon">
+                <img
+                    src="{% static 'assets/images/linternet.png'%}"
+                    alt="internet-icon"
+                />
+                <a href="https://www.waxangarilabs.org" target="_blank"
+                    >www.waxangarilabs.org</a
+                >
+            </div>
+            <div class="contact-icon">
+                <img
+                    src="{% static 'assets/images/locate.png'%}"
+                    alt="locate-icon"
+                />
+                <a href="">Parakou</a>
+            </div>
+            <button class="close-popup" id="close-popup">&times;</button>
+        </div>
+    </div>
+
+    <!-- contenu popup pour partager le lien de la plateforme sur vos réseaux sociaux -->
+    <div class="popup-overlay" id="popup-overlay-partager">
+        <div class="popup-content">
+            <h2>PARTAGER LE LIEN DE LA PLATEFORME</h2>
+            <div class="partage-icon">
+                <a id="share-facebook">
+                    <img
+                        src="{% static 'assets/images/facebook.png' %}"
+                        alt="facebook"
+                    />
+                </a>
+                <a id="share-twitter">
+                    <img
+                        src="{% static 'assets/images/twitter.png' %}"
+                        alt="twitter"
+                    />
+                </a>
+                <a id="share-linkedin">
+                    <img
+                        src="{% static 'assets/images/linkedin.png' %}"
+                        alt="linkedin"
+                    />
+                </a>
+                <a id="share-whatsapp">
+                    <img
+                        src="{% static 'assets/images/whatsapp.png' %}"
+                        alt="whatsapp"
+                    />
+                </a>
+            </div>
+            <p>Cliquer sur une icon ci-dessus pour partager.</p>
+            <button class="close-popup" id="close-popup-partager">
+                &times;
+            </button>
+        </div>
+    </div>
+</section>
+
+<section class="our-courses world" id="courses">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-heading">
+                    <h2>Nos événements populaires</h2>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="owl-courses-item owl-carousel">
+                    <div class="item">
+                        <img
+                            src="{%static 'assets/images/course-01.jpg'%}"
+                            alt="Course One"
+                        />
+                        <div class="down-content">
+                            <h4>Morbi tincidunt elit vitae justo rhoncus</h4>
+                            <div class="info">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <ul>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-4">
+                                        <span>$160</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img
+                            src="{%static 'assets/images/course-02.jpg'%}"
+                            alt="Course Two"
+                        />
+                        <div class="down-content">
+                            <h4>Curabitur molestie dignissim purus vel</h4>
+                            <div class="info">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <ul>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-4">
+                                        <span>$180</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img
+                            src="{%static 'assets/images/course-03.jpg'%}"
+                            alt=""
+                        />
+                        <div class="down-content">
+                            <h4>Nulla at ipsum a mauris egestas tempor</h4>
+                            <div class="info">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <ul>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-4">
+                                        <span>$140</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img
+                            src="{% static 'assets/images/course-04.jpg'%}"
+                            alt=""
+                        />
+                        <div class="down-content">
+                            <h4>Aenean molestie quis libero gravida</h4>
+                            <div class="info">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <ul>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-4">
+                                        <span>$120</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img
+                            src="{%static 'assets/images/course-01.jpg'%}"
+                            alt=""
+                        />
+                        <div class="down-content">
+                            <h4>Lorem ipsum dolor sit amet adipiscing elit</h4>
+                            <div class="info">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <ul>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-4">
+                                        <span>$250</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img
+                            src="{%static 'assets/images/course-02.jpg'%}"
+                            alt=""
+                        />
+                        <div class="down-content">
+                            <h4>TemplateMo is the best website for Free CSS</h4>
+                            <div class="info">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <ul>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-4">
+                                        <span>$270</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img
+                            src="{%static 'assets/images/course-03.jpg'%}"
+                            alt=""
+                        />
+                        <div class="down-content">
+                            <h4>Web Design Templates at your finger tips</h4>
+                            <div class="info">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <ul>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-4">
+                                        <span>$340</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img
+                            src="{%static 'assets/images/course-04.jpg'%}"
+                            alt=""
+                        />
+                        <div class="down-content">
+                            <h4>Please visit our website again</h4>
+                            <div class="info">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <ul>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-4">
+                                        <span>$360</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img
+                            src="{%static 'assets/images/course-01.jpg'%}"
+                            alt=""
+                        />
+                        <div class="down-content">
+                            <h4>Responsive HTML Templates for you</h4>
+                            <div class="info">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <ul>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-4">
+                                        <span>$400</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img
+                            src="{%static 'assets/images/course-02.jpg'%}"
+                            alt=""
+                        />
+                        <div class="down-content">
+                            <h4>Download Free CSS Layouts for your business</h4>
+                            <div class="info">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <ul>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-4">
+                                        <span>$430</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img
+                            src="{%static 'assets/images/course-03.jpg'%}"
+                            alt=""
+                        />
+                        <div class="down-content">
+                            <h4>Morbi in libero blandit lectus cursus</h4>
+                            <div class="info">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <ul>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-4">
+                                        <span>$480</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img
+                            src="{% static 'assets/images/course-04.jpg'%}"
+                            alt=""
+                        />
+                        <div class="down-content">
+                            <h4>Curabitur molestie dignissim purus</h4>
+                            <div class="info">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <ul>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                            <li><i class="fa fa-star"></i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-4">
+                                        <span>$560</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="our-facts world">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>Quelques statistiques sur notre plateforme</h2>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="count-area-content percentage">
+                                    <div class="count-digit">94</div>
+                                    <div class="count-title">
+                                        Personnes ayant terminés leur
+                                        apprentissage
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="count-area-content">
+                                    <div class="count-digit">126</div>
+                                    <div class="count-title">
+                                        Nombre de leçons en ligne
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="count-area-content new-students">
+                                    <div class="count-digit">2344</div>
+                                    <div class="count-title">
+                                        Nouveaux Apprentis
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="count-area-content">
+                                    <div class="count-digit">32</div>
+                                    <div class="count-title">Certifiés</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 align-self-center">
+                <div class="video">
+                    <a
+                        href="https://youtube.com/shorts/tJ-_OBk-BqY?si=oYFujl6TEp1_hU07"
+                        target="_blank"
+                        ><img
+                            src="{%static 'assets/images/play-icon.png'%}"
+                            alt=""
+                    /></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contact-us world" id="contact">
+    {%if not user.is_authenticated%}
+    <div id="se-connecter">
+        <h1>CONNECTEZ-VOUS ICI !</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="iscr">
+                <div class="iscr-images" id="iscr-image1"></div>
+                <div class="inscripform">
+                    <form
+                        action="{% url 'connexion'%}"
+                        method="post"
+                        class="signin-form"
+                    >
+                        {%csrf_token%} {{login.as_p}}
+                        <div class="form-group">
+                            <button
+                                type="submit"
+                                class="form-control btn submit px-3"
+                                id="bouton-connexion"
+                            >
+                                Se connecter
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <a href="">Mot de passe oublié ?</a>
+                            <p class="rappel">
+                                Vous n'avez de compte ?
+                                <a href="#s-inscrire">Inscrivez-vous ici</a>
+                            </p>
+                        </div>
+                    </form>
+                    <div class="login-wrap p-0">
+                        <p class="w-100 text-center">
+                            &mdash; Ou connectez-vous avec &mdash;
+                        </p>
+                        <div
+                            class="social d-flex text-center"
+                            id="facebook-twitter"
+                        >
+                            <a href="#" class="px-2 py-2 mr-md-1 rounded">
+                                <span class="fab fa-facebook-f mr-2"></span>
+                                <!-- Utiliser Font Awesome pour l'icône Facebook -->
+                                Facebook
+                            </a>
+                            <a href="#" class="px-2 py-2 ml-md-1 rounded">
+                                <span class="fab fa-twitter mr-2"></span>
+                                <!-- Utiliser Font Awesome pour l'icône Twitter -->
+                                Twitter
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {%endif%} {%if not user.is_authenticated%}
+    <div id="s-inscrire">
+        <h1>INSCRIVEZ-VOUS ICI !</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="iscr">
+                <div class="inscripform">
+                    <form
+                        action="{% url 'inscription' %}"
+                        method="post"
+                        enctype="multipart/form-data"
+                        id="formulaire-inscription"
+                    >
+                        {%csrf_token%} {{ form.as_p }}
+                        <div>
+                            <button type="submit" id="button-inscription">
+                                S'INSCRIRE
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="iscr-images"></div>
+            </div>
+        </div>
+    </div>
+    {%endif%}
+</section>
+
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'jquery/jquery.min.js'%}"></script>
+<script src="{%static 'bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+
+<script src="{%static 'assets/js/isotope.min.js'%}"></script>
+<script src="{%static 'assets/js/owl-carousel.js'%}"></script>
+<script src="{% static 'assets/js/lightbox.js'%}"></script>
+<script src="{% static 'assets/js/tabs.js' %}"></script>
+<script src="{% static 'assets/js/video.js' %}"></script>
+<script src="{% static 'assets/js/slick-slider.js'%}"></script>
+<script src="{% static 'assets/js/custom.js' %}"></script>
+<script src="{%static 'assets/js/popper.js'%}"></script>
+<script src="{%static 'assets/js/main.js'%}"></script>
+<script src="{%static 'assets/js/bootstrap.min.js'%}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const bande = document.getElementById("bande");
+
+        // Afficher la bande au chargement
+        bande.style.display = "block";
+
+        // Masquer la bande après 10 secondes
+        setTimeout(() => {
+            bande.style.display = "none";
+        }, 5000); // 10000ms = 10 secondes
+    });
+</script>
+<script>
+    //according to loftblog tut
+    $(".nav li:first").addClass("active");
+
+    var showSection = function showSection(section, isAnimate) {
+        var direction = section.replace(/#/, ""),
+            reqSection = $(".section").filter(
+                '[data-section="' + direction + '"]'
+            ),
+            reqSectionPos = reqSection.offset().top - 0;
+
+        if (isAnimate) {
+            $("body, html").animate(
+                {
+                    scrollTop: reqSectionPos,
+                },
+                800
+            );
+        } else {
+            $("body, html").scrollTop(reqSectionPos);
+        }
+    };
+
+    var checkSection = function checkSection() {
+        $(".section").each(function () {
+            var $this = $(this),
+                topEdge = $this.offset().top - 80,
+                bottomEdge = topEdge + $this.height(),
+                wScroll = $(window).scrollTop();
+            if (topEdge < wScroll && bottomEdge > wScroll) {
+                var currentId = $this.data("section"),
+                    reqLink = $("a").filter("[href*=\\#" + currentId + "]");
+                reqLink
+                    .closest("li")
+                    .addClass("active")
+                    .siblings()
+                    .removeClass("active");
+            }
+        });
+    };
+
+    $(".main-menu, .responsive-menu, .scroll-to-section").on(
+        "click",
+        "a",
+        function (e) {
+            e.preventDefault();
+            showSection($(this).attr("href"), true);
+        }
+    );
+
+    $(window).scroll(function () {
+        checkSection();
+    });
+</script>
+<script>
+    function ouvrirPopup() {
+        // Références aux éléments HTML
+        const openPopupBtn = document.getElementById("open-popup");
+        const closePopupBtn = document.getElementById("close-popup");
+        const popupOverlay = document.getElementById("popup-overlay");
+
+        // Fonction pour afficher le popup
+        openPopupBtn.addEventListener("click", () => {
+            popupOverlay.style.display = "flex";
+        });
+
+        // Fonction pour fermer le popup
+        closePopupBtn.addEventListener("click", () => {
+            popupOverlay.style.display = "none";
+        });
+
+        // Fermer le popup si on clique en dehors du contenu
+        popupOverlay.addEventListener("click", (e) => {
+            if (e.target === popupOverlay) {
+                popupOverlay.style.display = "none";
+            }
+        });
+    }
+
+    function ouvrirPopupPartage() {
+        // Références aux éléments HTML
+        const openPopupBtn = document.getElementById("open-popup-partager");
+        const closePopupBtn = document.getElementById("close-popup-partager");
+        const popupOverlay = document.getElementById("popup-overlay-partager");
+
+        // Fonction pour afficher le popup
+        openPopupBtn.addEventListener("click", () => {
+            popupOverlay.style.display = "flex";
+        });
+
+        // Fonction pour fermer le popup
+        closePopupBtn.addEventListener("click", () => {
+            popupOverlay.style.display = "none";
+        });
+
+        // Fermer le popup si on clique en dehors du contenu
+        popupOverlay.addEventListener("click", (e) => {
+            if (e.target === popupOverlay) {
+                popupOverlay.style.display = "none";
+            }
+        });
+    }
+</script>
+<script>
+    // URL et texte à partager
+    const pageUrl = encodeURIComponent(window.location.href);
+    const pageTitle = encodeURIComponent(
+        "Découvrez cette plateforme incroyable !"
+    );
+    const pageDescription = encodeURIComponent(
+        "Rejoignez-nous pour une expérience unique sur notre site web."
+    );
+
+    // Partage sur Facebook
+    document.getElementById(
+        "share-facebook"
+    ).href = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+
+    // Partage sur Twitter
+    document.getElementById(
+        "share-twitter"
+    ).href = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;
+
+    // Partage sur LinkedIn
+    document.getElementById(
+        "share-linkedin"
+    ).href = `https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`;
+
+    // Partage sur WhatsApp
+    document.getElementById(
+        "share-whatsapp"
+    ).href = `https://wa.me/?text=${pageTitle}%20${pageUrl}`;
+</script>
+{%endblock%}
