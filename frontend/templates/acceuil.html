@@ -955,7 +955,11 @@
 
 <!-- Bootstrap core JavaScript -->
 <script src="{% static 'jquery/jquery.min.js'%}"></script>
-<script src="{%static 'bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"
+></script>
 
 <script src="{%static 'assets/js/isotope.min.js'%}"></script>
 <script src="{%static 'assets/js/owl-carousel.js'%}"></script>
@@ -967,19 +971,7 @@
 <script src="{%static 'assets/js/popper.js'%}"></script>
 <script src="{%static 'assets/js/main.js'%}"></script>
 <script src="{%static 'assets/js/bootstrap.min.js'%}"></script>
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const bande = document.getElementById("bande");
 
-        // Afficher la bande au chargement
-        bande.style.display = "block";
-
-        // Masquer la bande après 10 secondes
-        setTimeout(() => {
-            bande.style.display = "none";
-        }, 5000); // 10000ms = 10 secondes
-    });
-</script>
 <script>
     //according to loftblog tut
     $(".nav li:first").addClass("active");

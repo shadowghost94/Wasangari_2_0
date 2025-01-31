@@ -122,6 +122,10 @@ a {
     color: #3cf;
 }
 
+i {
+    font-family: "Font Awesome 6 Free" !important;
+}
+
 a:hover {
     color: #fc3;
 }
@@ -3107,9 +3111,15 @@ div.conteneur-detail-cours div.ce-qua-apprendre {
 div.conteneur-detail-cours div.ce-qua-apprendre h1 {
     color: black;
 }
-div.conteneur-detail-cours div.ce-qua-apprendre ul.normal li {
-    list-style-type: circle;
-    margin-left: 10%;
+div.conteneur-detail-cours div.ce-qua-apprendre ul.normal {
+    padding: 0px 50px;
+}
+div.conteneur-detail-cours div.ce-qua-apprendre ul.normal li::before {
+    content: "✔";
+    color: #007bff;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
 }
 div.conteneur-detail-cours div.labellisation {
     background-color: white;
@@ -3151,4 +3161,207 @@ main.main-content header p {
 
 div.container-card main.main-content div.pagination ul li {
     margin-left: 10px;
+}
+
+/* Propriétés css de la page leçon */
+.lecon {
+    margin-top: 10%;
+    text-align: center;
+}
+
+div.lecon button {
+    background-color: #f5a425;
+    border: 1px solid #f5a425;
+    border-radius: 10px;
+}
+
+div.lecon button:hover {
+    opacity: 0.7;
+}
+
+.courss {
+    display: none;
+}
+
+.menus-options {
+    background-color: #fff;
+    border: 5px solid black;
+    margin: 0 10px;
+}
+
+.menus-options div.section-lecon {
+    display: flex;
+    padding: 0px 10px;
+}
+
+.menus-options div.section-lecon div.retour-suivant {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0% 15%;
+}
+
+div.section-lecon .sidebar-lecon {
+    width: 300px;
+    background-color: #f4f4f4;
+    border-right: 1px solid #ddd;
+    padding: 10px;
+    overflow-y: auto;
+}
+div.section-lecon .sidebar-lecon ul {
+    list-style-type: none;
+    padding: 0;
+}
+div.section-lecon .sidebar-lecon li {
+    margin: 5px 0;
+}
+div.section-lecon .sidebar-lecon li:hover {
+    cursor: pointer;
+}
+div.section-lecon .sidebar-lecon .title {
+    font-weight: bold;
+    cursor: pointer;
+}
+div.section-lecon .sidebar-lecon .subtitles {
+    display: none;
+    margin-left: 15px;
+}
+div.section-lecon .sidebar-lecon .subtitles li {
+    cursor: pointer;
+    color: #007bff;
+}
+div.section-lecon .sidebar-lecon .subtitles li:hover {
+    text-decoration: underline;
+}
+/* Contenu principal */
+div.section-lecon .content-lecon {
+    flex-grow: 1;
+    padding: 20px;
+}
+div.section-lecon .content-lecon h1 {
+    margin-bottom: 10px;
+}
+div.section-lecon .content-lecon p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* concerne les informations sur une leçon précise */
+div.menus-options div.container-infos-cours {
+    max-width: 800px;
+    margin: 20px auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+div.menus-options div.container-infos-cours h2,
+h3 {
+    color: #007bff;
+}
+
+div.menus-options div.container-infos-cours .description {
+    margin-bottom: 20px;
+}
+
+div.menus-options div.container-infos-cours ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+div.menus-options div.container-infos-cours ul li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+div.menus-options div.container-infos-cours ul li::before {
+    content: "✔";
+    color: #007bff;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+div.menus-options div.container-infos-cours .cta-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #28a745;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+div.menus-options div.container-infos-cours .cta-button:hover {
+    background-color: #218838;
+}
+
+/* propriétés css relative à la section des discussions sur un cours */
+div.menus-options .container-discussion {
+    max-width: 900px;
+    margin: 20px auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+div.menus-options .container-discussion .messages {
+    max-height: 500px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    background: #f9f9f9;
+    border-radius: 5px;
+}
+
+div.menus-options .container-discussion .message {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    background: #eef;
+}
+
+div.menus-options .container-discussion .message h4 {
+    margin: 0 0 5px;
+    color: #007bff;
+}
+
+div.menus-options .container-discussion .message p {
+    margin: 0;
+    color: #333;
+}
+
+div.menus-options .container-discussion form {
+    display: flex;
+    gap: 10px;
+}
+
+div.menus-options .container-discussion textarea {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: none;
+}
+
+div.menus-options .container-discussion button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #218838;
 }

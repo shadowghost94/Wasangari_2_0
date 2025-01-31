@@ -1,10 +1,220 @@
 {% extends "base.html" %} {% load static %} {% block corpsDeLaPage %}
-<div>
-    <button>Cours</button>
-    <button>Infos du cours</button>
-    <button>Discussion</button>
-    <button>Progression</button>
-    <button>FAQ</button>
+<div class="lecon">
+    <button onClick="cours()">Cours</button>
+    <button onClick="infos()">Infos du cours</button>
+    <button onClick="discussion()">Discussion</button>
+    <button onClick="progression()">Progression</button>
+    <button onClick="faq()">FAQ</button>
+</div>
+<div class="cours infos discussionn faqq progressions menus-options">
+    <div class="section-lecon">
+        <div class="sidebar-lecon col-lg-3">
+            <ul>
+                <!-- Grand titre 1 -->
+                <li>
+                    <span class="title" onclick="toggleSubtitles('title1')"
+                        >📘 Grand Titre 1</span
+                    >
+                    <ul class="subtitles" id="title1">
+                        <li onclick="loadContent('Contenu sous-titre 1.1')">
+                            Sous-titre 1.1
+                        </li>
+                        <li onclick="loadContent('Contenu sous-titre 1.2')">
+                            Sous-titre 1.2
+                        </li>
+                        <li onclick="loadContent('Contenu sous-titre 1.3')">
+                            Sous-titre 1.3
+                        </li>
+                    </ul>
+                </li>
+                <!-- Grand titre 2 -->
+                <li>
+                    <span class="title" onclick="toggleSubtitles('title2')"
+                        >📗 Grand Titre 2</span
+                    >
+                    <ul class="subtitles" id="title2">
+                        <li onclick="loadContent('Contenu sous-titre 2.1')">
+                            Sous-titre 2.1
+                        </li>
+                        <li
+                            onclick="loadContent('ConWorkertenu sous-titre 2.2')"
+                        >
+                            Sous-titre 2.2
+                        </li>
+                        <li onclick="loadContent('Contenu sousSSS-titre 2.3')">
+                            Sous-titre 2.3
+                        </li>
+                    </ul>
+                </li>
+                <!-- Grand titre 3 -->
+                <li>
+                    <span class="title" onclick="toggleSubtitles('title3')"
+                        >📕 Grand Titre 3</span
+                    >
+                    <ul class="subtitles" id="title3">
+                        <li
+                            onclick="loadContent('Contenu sous-tirrrrrrtre 3.1')"
+                        >
+                            Sous-titre 3.1
+                        </li>
+                        <li
+                            onclick="loadContent('Contenu sooooooous-titrre 3.2')"
+                        >
+                            Sous-titre 3.2
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="content-lecon col-lg-9" id="content-lecon">
+            <h1>Bienvenue</h1>
+            <p>
+                Sélectionnez un titre ou sous-titre pour afficher son contenu
+                ici.
+            </p>
+        </div>
+    </div>
+</div>
+<div class="infos-cours courss discussionn faqq progressions menus-options">
+    <div class="container-infos-cours">
+        <h2>📚 Titre du Cours</h2>
+        <p class="description">
+            Ce cours explore les concepts fondamentaux et avancés pour maîtriser
+            [sujet]. Vous apprendrez à [objectif principal].
+        </p>
+
+        <h3>Objectifs du Cours</h3>
+        <ul>
+            <li>Apprendre les bases de [sujet]</li>
+            <li>Développer des compétences pratiques pour [activité]</li>
+            <li>Comprendre les techniques avancées de [concept]</li>
+        </ul>
+
+        <h3>Prérequis</h3>
+        <p>Avant de commencer ce cours, vous devriez avoir :</p>
+        <ul>
+            <li>Connaissances de base en [sujet requis]</li>
+            <li>Une certaine expérience avec [technologie/méthode]</li>
+        </ul>
+
+        <h3>Contenu du Cours</h3>
+        <ul>
+            <li>Introduction à [sujet]</li>
+            <li>Module 1 : [détail du module]</li>
+            <li>Module 2 : [détail du module]</li>
+            <li>Conclusion et mise en pratique</li>
+        </ul>
+
+        <a href="/inscription/" class="cta-button">S'inscrire au Cours</a>
+    </div>
+</div>
+<div class="discussion courss infos faqq progressions menus-options">
+    <div class="container-discussion">
+        <!-- Historique des messages -->
+        <div class="messages" id="messageContainer">
+            <div class="message">
+                <h4>Utilisateur1</h4>
+                <p>
+                    Bonjour tout le monde, avez-vous des conseils pour le
+                    chapitre 2 ?
+                </p>
+            </div>
+            <div class="message">
+                <h4>Utilisateur2</h4>
+                <p>
+                    Je recommande de revoir les exercices de la semaine
+                    dernière, c’est très utile !
+                </p>
+            </div>
+            <!-- Les messages supplémentaires seront insérés ici -->
+        </div>
+
+        <!-- Zone pour écrire un message -->
+        <form id="messageForm">
+            <textarea
+                id="messageInput"
+                placeholder="Écrivez votre message ici..."
+                rows="3"
+                required
+            ></textarea>
+            <button type="submit">Envoyer</button>
+        </form>
+    </div>
+</div>
+<div class="progression faqq courss infos discussionn menus-options">
+    Progression
+</div>
+<div class="faq courss infos discussionn progressions menus-options">
+    un FAQ
 </div>
 
+<script>
+    // ces script sont destinés au basculement
+    // button Cours-InfosCours-Discussion-Progression-FAQ
+
+    function cours() {
+        const lecon = document.querySelectorAll(".courss");
+        const cours = document.querySelector(".cours");
+        cours.style.display = "block";
+        lecon.forEach((x) => {
+            x.style.display = "none";
+        });
+    }
+
+    function infos() {
+        const infos = document.querySelectorAll(".infos");
+        const infocours = document.querySelector(".infos-cours");
+        infocours.style.display = "flex";
+        infos.forEach((x) => {
+            x.style.display = "none";
+        });
+    }
+
+    function discussion() {
+        const discussions = document.querySelectorAll(".discussionn");
+        const discuss = document.querySelector(".discussion");
+        discuss.style.display = "flex";
+        discussions.forEach((x) => {
+            x.style.display = "none";
+        });
+    }
+
+    function progression() {
+        const progressions = document.querySelectorAll(".progressions");
+        const progression = document.querySelector(".progression");
+        progression.style.display = "flex";
+        progressions.forEach((x) => {
+            x.style.display = "none";
+        });
+    }
+
+    function faq() {
+        const faqq = document.querySelectorAll(".faqq");
+        const faq = document.querySelector(".faq");
+        faq.style.display = "flex";
+        faqq.forEach((x) => {
+            x.style.display = "none";
+        });
+    }
+</script>
+<script>
+    // Fonction pour afficher ou cacher les sous-titres
+    function toggleSubtitles(id) {
+        const element = document.getElementById(id);
+        if (element.style.display === "block") {
+            element.style.display = "none";
+        } else {
+            element.style.display = "block";
+        }
+    }
+
+    // Fonction pour charger le contenu correspondant
+    function loadContent(content) {
+        const contentDiv = document.getElementById("content-lecon");
+        contentDiv.innerHTML = `
+            <h1>${content}</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin at ex sit amet justo varius faucibus.</p>
+        `;
+    }
+</script>
 {% endblock %}

@@ -59,13 +59,18 @@ def royaumes(request):
 def patrimoines(request):
     return render(request, 'patrimoines.html')
 
-@login_required
 def learn_something(request):
     return render(request, 'detail_cours.html')
+
+def lecon (request):
+    return  render(request, 'lecon.html')
 
 @login_required
 def decouvrir(request):
     return render(request, 'decouvrir.html')
+
+def test(request):
+    return render(request, 'testfontawesome.html')
 
 @login_required
 def sites(request):
