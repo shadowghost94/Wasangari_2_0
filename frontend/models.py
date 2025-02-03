@@ -103,6 +103,13 @@ class Thematique(models.Model):
         return self.nom
 
 class Cours(models.Model):
+    DISPONIBILITE = [
+        ('ouvert', 'Ouvert pour inscription'),
+        ('bientot', 'Bientôt'),
+        ('en_cours', 'En cours'),
+        ('archive', 'Archivé')
+    ]
+
     titre = models.CharField(max_length=255)
     description = models.TextField()
     langue = models.ForeignKey(Langues, on_delete=models.DO_NOTHING)
@@ -110,15 +117,16 @@ class Cours(models.Model):
     photo_de_profil = models.ImageField(upload_to='courses_pictures/', blank=True, null=True, verbose_name="Une image de description pour le cours")
     auteur = models.ForeignKey(User, on_delete=models.CASCADE)
     thematiques = models.ManyToManyField(Thematique, related_name='cours', blank=True)
+    disponibilite = models.CharField(max_length=24, choices=DISPONIBILITE, verbose_name="Disponibilité du cours", default="En cours")
 
 class Lecon(models.Model):
     titre = models.CharField(max_length=255)
-    description = models.CharField(max_length=655)
-    contenu = models.TextField()
     date_et_heure = models.DateTimeField(auto_now=True)
     video = models.FileField(upload_to='file_reference/', blank=True, null=True)
+    pdf = models.FileField(upload_to="file_reference/", blank=True, null=True)
     cours = models.ForeignKey(Cours, on_delete=models.DO_NOTHING)
 
 class A_Apprendre(models.Model):
     contenue = models.TextField()
     cours = models.ForeignKey(Cours, on_delete=models.DO_NOTHING)
+

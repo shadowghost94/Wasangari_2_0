@@ -2916,7 +2916,7 @@ div#popup-overlay-partager div.popup-content p {
 .container-card {
     display: flex;
     max-width: 1200px;
-    margin: 20px auto;
+    margin: 0px auto;
     margin-top: 3%;
     gap: 20px;
     /* background-color: transparent; */
@@ -2959,23 +2959,22 @@ div#popup-overlay-partager div.popup-content p {
 }
 
 .header {
-    margin-bottom: 20px;
     font-size: 14px;
     color: #fff;
 }
 
 .courses {
     display: flex;
-    margin: 0 auto;
+    /* margin: 0px 0px; */
     padding-top: 1rem;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 20px;
 }
 
 .course-card {
     position: relative;
     background-color: #ffffff;
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
     flex-direction: column;
@@ -3032,6 +3031,7 @@ div#popup-overlay-partager div.popup-content p {
     margin-bottom: 0px;
     background-color: #f5a425;
     color: #fff;
+    gap: 20px;
 }
 /* Propriétés css de la page des détails du un cours */
 
@@ -3080,7 +3080,15 @@ div.conteneur-detail-cours div.griotique {
     border-radius: 10px;
 }
 div.conteneur-detail-cours div.duree-effort-langues {
+    display: flex;
+    /* justify-content: space-between; */
     justify-content: space-between;
+}
+div.conteneur-detail-cours div.duree-effort-langues a {
+    color: #000;
+}
+div.conteneur-detail-cours div.duree-effort-langues a i {
+    color: #f5a425;
 }
 
 div.conteneur-detail-cours div.otherside {
@@ -3119,7 +3127,7 @@ div.conteneur-detail-cours div.ce-qua-apprendre ul.normal li::before {
     color: #007bff;
     font-weight: bold;
     position: absolute;
-    left: 0;
+    left: 50px;
 }
 div.conteneur-detail-cours div.labellisation {
     background-color: white;

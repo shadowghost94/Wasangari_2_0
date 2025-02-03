@@ -30,17 +30,41 @@
             <h3>Nouveaux cours</h3>
             <label><input type="checkbox" /> Nouveaux cours (216)</label>
         </div>
-        {% comment %}
         <div class="filter-section">
             <h3>Disponibilité</h3>
             <label
-                ><input type="checkbox" /> Ouvert pour inscription (162)</label
-            >
-            <label><input type="checkbox" /> Bientôt (55)</label>
-            <label><input type="checkbox" /> En cours (140)</label>
-            <label><input type="checkbox" /> Archivé (713)</label>
+                ><input
+                    type="checkbox"
+                    class="filter-checkbox"
+                    value="ouvert_inscription"
+                />
+                Ouvert pour inscription
+            </label>
+            <label
+                ><input
+                    type="checkbox"
+                    class="filter-checkbox"
+                    value="bientot"
+                />
+                Bientôt
+            </label>
+            <label
+                ><input
+                    type="checkbox"
+                    class="filter-checkbox"
+                    value="en_cours"
+                />
+                En cours
+            </label>
+            <label
+                ><input
+                    type="checkbox"
+                    class="filter-checkbox"
+                    value="archive"
+                />
+                Archivé
+            </label>
         </div>
-        {% endcomment %}
         <div class="filter-section">
             <h3>Langues</h3>
             {% for langue in langues %}
@@ -85,7 +109,9 @@
                     class="course-card"
                     id="course-card"
                     data-category="{{cour.langue_id}}"
-                    data-categoryy="thematique{{cour.thematique_id}}"
+                    data-thematique="thematique{{cour.thematique_id}}"
+                    data-disponibilite="{{cours.disponibilite}}"
+                    data-nouveaux=""
                 >
                     <div
                         class="course-image"
@@ -100,9 +126,13 @@
                                 {{ cour.description|slice:":50" }}...
                             </strong>
                         </p>
+                        <i class="fa-solid fa-barcode"></i>
                         <span class="course-code">ID:{{cour.id}}</span>
                     </div>
-                    <div class="course-footer">Ouvert à l'inscription</div>
+                    <div class="course-footer">
+                        <i class="fas fa-calendar-alt"></i>
+                        Ouvert à l'inscription
+                    </div>
                 </div>
             </a>
             {% endfor %}
@@ -118,9 +148,23 @@
 </div>
 <!-- Scripts -->
 <!-- Bootstrap core JavaScript -->
+<script src="{% static 'jquery/jquery.min.js'%}"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"
+></script>
 
+<!-- <script src="{%static 'assets/js/isotope.min.js'%}"></script> -->
+<script src="{%static 'assets/js/owl-carousel.js'%}"></script>
+<script src="{% static 'assets/js/lightbox.js'%}"></script>
+<script src="{% static 'assets/js/tabs.js' %}"></script>
+<!-- <script src="{% static 'assets/js/isotope.js'%}"></script> -->
+<script src="{% static 'assets/js/slick-slider.js'%}"></script>
+<!-- <script src="{% static 'assets/js/custom.js' %}"></script> -->
 <!-- Script pour la pagination -->
 <script>
+    /* Script javascript pour la pagination*/
     document.addEventListener("DOMContentLoaded", () => {
         const itemsPerPage = 9;
         const itemsContainer = document.getElementById("courses");
@@ -128,7 +172,7 @@
         const items = Array.from(itemsContainer.children); // Convert child nodes to an array
         const totalPages = Math.ceil(items.length / itemsPerPage);
 
-        // Function to display items for the given page
+        // Fonction permettant d'afficher les éléments de la page donnée
         const displayPage = (page) => {
             // Hide all items first
             items.forEach((item, index) => {
@@ -207,7 +251,7 @@
             const checkedValues = Array.from(
                 document.querySelectorAll(".filter-checkbox:checked")
             ).map((cb) => cb.value);
-
+            console.log(checkedValues);
             // Récupérer tous les éléments à filtrer
             const courseCards = document.querySelectorAll(".course-card");
 
@@ -217,10 +261,12 @@
                 const categories = card
                     .getAttribute("data-category")
                     .split(" ");
-                console.log(categories);
+                const disponibilite = card.getAttribute("data-disponibilite");
+                //console.log(categories);
                 if (
                     checkedValues.length === 0 ||
-                    checkedValues.some((value) => categories.includes(value))
+                    checkedValues.some((value) => categories.includes(value)) ||
+                    checkedValues.some((value) => disponibilite.includes(value))
                 ) {
                     card.style.display = "block"; // Afficher
                 } else {

@@ -1,4 +1,0 @@
--fun mooc filtre augmenter disponibilité
--icones
--section affichage des cours (espacement d'au moins le double de ce qui est déjà là entre les cellules)
--les puces de cocher

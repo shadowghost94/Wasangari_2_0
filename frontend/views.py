@@ -26,9 +26,23 @@ def acceuil(request):
     return render(request, 'acceuil.html', {"form": form, "login": login})
 
 def apprendre(request):
+    # l'instruction ci-dessous récupère l'ensemble des cours
     cours = Cours.objects.all()
+
+    # l'iNstruction ci-dessous récupère l'ensemble des cours associés thématiques
+    cours_data = Cours.objects.prefetch_related('thematiques').all()
+    # Dictionnaire contenant les cours et leurs thématiques associées
+    cours_thematiques_dict = {
+        cours.id: list(cours.thematiques.values_list('id', flat=True))
+        for cours in cours_data
+    }
+
+    #l'instruction ci-dessous récupère lensemble de langues
     langues = Langues.objects.all()
+
+    #l'instruction ci-dessous pour récupérer l'ensemble des thématiques
     thematiques = Thematique.objects.all()
+    
     return render(request, 'apprendre.html', {"cours": cours, "thematiques":thematiques, "langues": langues})
 
 @login_required
