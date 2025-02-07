@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
+import os
 
 #modèle de base utilisé pour la création du superutilisateur ou de l'utiliisateur par défaut
 class CustomUserManager(BaseUserManager):
@@ -43,6 +44,8 @@ class User(AbstractUser):
     sexe = models.CharField(max_length=10, choices=SEXE, verbose_name="SEXE")
     ethnie = models.ForeignKey(Ethnies, on_delete=models.DO_NOTHING, blank=True, null = True)
     photo_de_profil = models.ImageField(upload_to='profile_pictures/', blank=True, null=True, verbose_name="Votre photo de profil")
+    is_registered = models.BooleanField(default=0, verbose_name="Si l'utilisateur courant est inscrit pour un cours précis")
+    profession = models.CharField(max_length=255, default="Historien, Enseignant chercheur à L'université de Parakou")
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -111,22 +114,67 @@ class Cours(models.Model):
     ]
 
     titre = models.CharField(max_length=255)
+    objectif = models.CharField(max_length=255, verbose_name="En une ou deux phrases, en quoi ce cours sera utile pour la personne qui le suivra ?", default="Que vous ayez déjà suivi le MOOC de l’an passé ou pas, ce MOOC est fait pour vous afin de rester employable et IA compatible alors que tout va si vite !")
     description = models.TextField()
     langue = models.ForeignKey(Langues, on_delete=models.DO_NOTHING)
     date_et_heure = models.DateTimeField(auto_now=True)
+    duree = models.IntegerField(verbose_name="Durée total de l'apprentissage (en nombre de semaine)", default=4)
+    effort = models.IntegerField(verbose_name="Effort à fournir en dehors des heures de cours (en nombre d'heures)", default=12)
+    rythme = models.IntegerField(verbose_name="Rythme d'apprentissage du cours (en nombre d'heure) par semaine", blank=True, null=True)
+    certifiante = models.BooleanField(default=False)
     photo_de_profil = models.ImageField(upload_to='courses_pictures/', blank=True, null=True, verbose_name="Une image de description pour le cours")
+    videos = models.FileField(upload_to="", blank=True, null=True, verbose_name="Une vidéo eplicatif du cours, pour donner un avant goût à l'apprenant")
+    a_apprendre = models.TextField()
+    glossaire = models.TextField()
+    nombre_semaine = models.IntegerField(default=1, verbose_name="Durée de l'apprentissage en nombre de semaine")
     auteur = models.ForeignKey(User, on_delete=models.CASCADE)
     thematiques = models.ManyToManyField(Thematique, related_name='cours', blank=True)
-    disponibilite = models.CharField(max_length=24, choices=DISPONIBILITE, verbose_name="Disponibilité du cours", default="En cours")
+    disponibilite = models.CharField(max_length=24, choices=DISPONIBILITE, verbose_name="Disponibilité du cours")
+    format = models.TextField(verbose_name="Le format du cours, Comment le cours est divisé ? Combien de semaine ? Est-ce qu'il y aura des lives ? A quel rythme ?", default="")
+    prerequis = models.TextField(verbose_name="Les pré-requis nécessaire pour suivre le cours", default="")
+    evaluation_certification = models.TextField(verbose_name="Comment les apprenants seront évalués ? Est-ce qu'ils auront une certification à la fin ?", default="")
+
+    def __str__(self):
+        return self.titre
+
+class Semaine(models.Model):
+    titre = models.CharField(max_length=255, verbose_name="Donner un titre pour l'ensemble des notions à apprendre durant cette semaine")
+    nombre_lecon = models.IntegerField(verbose_name="Nombre de leçon pour la semaine")
+    cours = models.ForeignKey(Cours, on_delete=models.DO_NOTHING, default="X", related_name = "cours")
+
+    def __str__(self):
+        return self.titre
+
+def lecon_file_path(instance, filename):
+    """Crée un répertoire unique basé sur l'ID de la leçon ou du cours"""
+    return os.path.join(f'course_videos/lecon_{instance.id}', filename)
+
 
 class Lecon(models.Model):
-    titre = models.CharField(max_length=255)
     date_et_heure = models.DateTimeField(auto_now=True)
-    video = models.FileField(upload_to='file_reference/', blank=True, null=True)
-    pdf = models.FileField(upload_to="file_reference/", blank=True, null=True)
-    cours = models.ForeignKey(Cours, on_delete=models.DO_NOTHING)
+    titre = models.CharField(max_length=255, verbose_name="Donner un titre pour cette leçon que vous souhaitez ajouter")
+    video = models.FileField(upload_to=lecon_file_path, verbose_name="Ajouter la version vidéo de la leçon", default="X")
+    pdf = models.FileField(upload_to=lecon_file_path, verbose_name="Ajouter la/les fichiers de documentation qui accompagne la vidéo")
+    semaine = models.ForeignKey(Semaine, on_delete=models.CASCADE)
 
-class A_Apprendre(models.Model):
-    contenue = models.TextField()
-    cours = models.ForeignKey(Cours, on_delete=models.DO_NOTHING)
+    def __str__(self):
+        return self.titre
 
+#Modele gerant l'inscription des utilisateurs
+class Inscription(models.Model):
+    STATUT_CHOICES = [
+        ('en_attente', 'En attente'),
+        ('valide', 'Validée'),
+        ('annulee', 'Annulée')
+    ]
+
+    utilisateur = models.ForeignKey(User, on_delete=models.CASCADE)
+    cours = models.ForeignKey(Cours, on_delete=models.CASCADE)
+    date_inscription = models.DateTimeField(auto_now_add=True)
+    statut = models.CharField(max_length=10, choices=STATUT_CHOICES, default='en_attente')
+
+    class Meta:
+        unique_together = ('utilisateur', 'cours')  # Empêche un utilisateur de s'inscrire plusieurs fois au même cours
+
+    def __str__(self):
+        return f"{self.utilisateur.username} - {self.cours.titre}"

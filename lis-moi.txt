@@ -1,0 +1,35 @@
+durée en semaine du cours
+Effort à fournir par l'apprenant
+Rythme parjour
+Lnagues d'enseignement du cours
+si le cours est certifié ou pas
+videos descriptif de ce que l'apprenant trouvera dans le cours
+si l'utilisateur courant est inscrit pour le cours ?
+a_apprendre(l'ensemble des lignes à apprendre dans un grand texte séparé par des points virgule)
+les informations de l'utilisateur courant a qui appartient le cours
+
+Users:
+    -Cours auquelles il est inscrit
+
+Un cours
+    - durée en semaine du cours
+    - effort à fournir par l'apprenant
+    - Rythme d'apprentissage du cours par jour
+    - Langue d'enseignement du cours
+    - Si le cours est certifiante ou pas ?
+    - video descriptif du cours
+    - a_apprendre()
+    - Un Glossaire
+    - Nombre de semaine totale pour finir le cours
+    - Subdivisions en des semaines de cours
+
+Semaine:
+    - Titre de la semaine
+    - Nombre des leçons
+    - subdivions en des leçons
+
+Leçon:
+    - Titre
+    - Une video explicatif
+    - version écrite en pdf de ce qui est expliqué dans la vidéo
+    -

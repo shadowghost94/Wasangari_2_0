@@ -104,7 +104,7 @@
         <div class="courses" id="courses">
             <!-- Cards -->
             {% for cour in cours %}
-            <a href="{% url 'detail-cours' %}">
+            <a href="{% url 'detail-cours' cour.id %}">
                 <div
                     class="course-card"
                     id="course-card"

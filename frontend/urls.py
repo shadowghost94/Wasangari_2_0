@@ -9,8 +9,8 @@ urlpatterns = [
     path('connexion/', views.connexion, name='connexion'),
     path('deconnexion/', views.deconnexion, name='deconnexion'),
     path('apprendre/', views.apprendre, name='apprendre'),
-    path('apprendre/detail-cours/', views.learn_something, name='detail-cours'),
-    path('lecon/', views.lecon, name="lecon"),
+    path('apprendre/detail-cours/<int:cours_id>', views.learn_something, name='detail-cours'),
+    path('apprendre/detail-cours/lecon/<int:coursid>', views.lecon, name="lecon"),
     path('decouvrir/', views.decouvrir, name='decouvrir'),
     path('sites/', views.sites, name='sites'),
     path('monuments/', views.monuments, name='monuments'),
@@ -36,7 +36,9 @@ urlpatterns = [
     path('articles_divinites/', views.articles_divinites, name="articles_divinites"),
     path('articles_royaumes/', views.articles_royaumes, name="articles_royaumes"),
     path('articles_patrimoines/', views.articles_patrimoines, name="articles_patrimoines"),
-     path('test/', views.test, name="test")
+    path('test/', views.test, name="test"),
+    path('apprendre/detail-cours/<int:cours_id>/registered_user', views.registered_user, name="registered_user"),
+    path('apprendre/detail-cours/<int:cours_id>/unregistered_user', views.unregistered_user, name="unregistered_user")
 ]
 
 if settings.DEBUG:

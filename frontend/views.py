@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.mail import send_mail, EmailMessage
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
@@ -73,11 +73,30 @@ def royaumes(request):
 def patrimoines(request):
     return render(request, 'patrimoines.html')
 
-def learn_something(request):
-    return render(request, 'detail_cours.html')
+def learn_something(request, cours_id):
+    cours_id = cours_id
+    cours = Cours.objects.get(id=cours_id)
+    thematiques_du_cours = cours.thematiques.all()
+    langue = Langues.objects.get(id=cours.langue_id)
 
-def lecon (request):
-    return  render(request, 'lecon.html')
+    #On vérifie si l'utilisateur courant est déjà inscrit pour le cours auquel il éssaye d'accéder
+    cours = get_object_or_404(Cours, id=cours_id)
+    is_registered = Inscription.objects.filter(utilisateur=request.user, cours=cours).exists()
+
+    #On récupère la ligne a_apprendre et on on le separe en plusieurs phrases grâe au point virgule
+    ce_qua_apprendre = cours.a_apprendre.split(";")
+    format = cours.format.split(";")
+
+    return render(request, 'detail_cours.html', {'cours': cours, 'thematiques': thematiques_du_cours, 'langue': langue, 'is_registered': is_registered, 'user': request.user, 'ce_qua_apprendre': ce_qua_apprendre, 'format': format})
+
+@login_required
+def lecon (request, coursid):
+    coursid = coursid
+    cours = Cours.objects.get(id=coursid)
+    semaines = Semaine.objects.filter(cours_id=cours.id)
+    lecons = Lecon.objects.filter(semaine__in=semaines)
+
+    return  render(request, 'lecon.html', {'cours':cours, 'semaines': semaines, 'lecons': lecons})
 
 @login_required
 def decouvrir(request):
@@ -252,3 +271,28 @@ def articles_royaumes(request):
 @login_required
 def articles_patrimoines(request):
     return render(request, 'articles_patrimoines.html')
+
+@login_required
+def registered_user(request, cours_id):
+    cours = get_object_or_404(Cours, id=cours_id)
+    inscription, created = Inscription.objects.get_or_create(utilisateur=request.user, cours=cours)
+
+    if created:
+        messages.success(request, "Vous avez bien été inscrit pour le cours !")
+    else:
+        messages.warning(request, "Vous êtes déjà inscrit à ce cours !")
+
+    return redirect('detail-cours', cours_id=cours.id)
+
+@login_required
+def unregistered_user(request, cours_id):
+    cours = get_object_or_404(Cours, id=cours_id)
+    inscription = Inscription.objects.filter(utilisateur=request.user, cours=cours).first()
+
+    if inscription:
+        inscription.delete()
+        messages.success(request, "Vous avez bien été désinscrire du cours !")
+    else:
+        messages.warning(request, "Vous n'êtes pas inscrit à ce cours !")
+
+    return redirect('detail-cours', cours_id=cours.id)

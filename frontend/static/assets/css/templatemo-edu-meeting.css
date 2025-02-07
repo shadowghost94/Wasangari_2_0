@@ -1874,6 +1874,14 @@ responsive
     display: none;
     z-index: 1000;
 }
+#bande2 {
+    width: 600px;
+    position: absolute;
+    top: 150px;
+    right: 10px;
+    display: none;
+    z-index: 1000;
+}
 /* nouveau formulaire d'inscription */
 select option {
     background-color: #4d5156;
@@ -3075,10 +3083,16 @@ div.conteneur-detail-cours div.thematiques-detail-cours a:hover {
     opacity: 0.7;
     color: #fff;
 }
+
 div.conteneur-detail-cours div.griotique {
     background-color: #fff;
     border-radius: 10px;
 }
+
+div.conteneur-detail-cours div.griotique div p.id-cours i {
+    color: #007bff;
+}
+
 div.conteneur-detail-cours div.duree-effort-langues {
     display: flex;
     /* justify-content: space-between; */
@@ -3119,9 +3133,17 @@ div.conteneur-detail-cours div.ce-qua-apprendre {
 div.conteneur-detail-cours div.ce-qua-apprendre h1 {
     color: black;
 }
+div.conteneur-detail-cours div.ce-qua-apprendre h2 {
+    font-weight: bold;
+    color: #f5a425;
+}
+
 div.conteneur-detail-cours div.ce-qua-apprendre ul.normal {
     padding: 0px 50px;
 }
+/* div.conteneur-detail-cours div.ce-qua-apprendre ul.normal li{
+    color: #000;
+} */
 div.conteneur-detail-cours div.ce-qua-apprendre ul.normal li::before {
     content: "✔";
     color: #007bff;
@@ -3220,14 +3242,17 @@ div.section-lecon .sidebar-lecon ul {
     list-style-type: none;
     padding: 0;
 }
-div.section-lecon .sidebar-lecon li {
+div.section-lecon .sidebar-lecon li.theonesubtitles {
     margin: 5px 0;
+    border-bottom: 1px solid;
+    border-color: rgba(155, 155, 155, 0.5);
 }
 div.section-lecon .sidebar-lecon li:hover {
     cursor: pointer;
 }
-div.section-lecon .sidebar-lecon .title {
+div.section-lecon .sidebar-lecon span.title {
     font-weight: bold;
+    color: #005584;
     cursor: pointer;
 }
 div.section-lecon .sidebar-lecon .subtitles {
@@ -3236,10 +3261,11 @@ div.section-lecon .sidebar-lecon .subtitles {
 }
 div.section-lecon .sidebar-lecon .subtitles li {
     cursor: pointer;
-    color: #007bff;
 }
 div.section-lecon .sidebar-lecon .subtitles li:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    background-color: rgba(155, 155, 155, 0.5);
+    border-radius: 5px;
 }
 /* Contenu principal */
 div.section-lecon .content-lecon {
@@ -3372,4 +3398,140 @@ div.menus-options .container-discussion button {
 
 button:hover {
     background-color: #218838;
+}
+
+/* Proprités css de infos du cours */
+div.menus-options div.infos-wrapper {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid #aaa;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+div.menus-options div.infos-wrapper section.updates {
+    line-height: 1.41575em;
+    box-sizing: border-box;
+    display: table-cell;
+    padding: 2em 2.5em;
+    vertical-align: top;
+    width: 76.27119%;
+}
+
+div.menus-options div.infos-wrapper section.handouts {
+    padding: 20px 30px;
+    margin: 0;
+    border-radius: 0 4px 4px 0;
+    border-left: 1px solid #ddd;
+    box-shadow: none;
+    font-size: 14px;
+    box-sizing: border-box;
+    display: table-cell;
+    font-family: "Poppins";
+    position: relative;
+    vertical-align: top;
+    width: 23.72881%;
+    background: #f6f6f6;
+}
+
+div.menus-options div.infos-wrapper section.updates h1 {
+    border-bottom: 1px solid #c8c8c8;
+    text-align: left;
+    font-size: 1.5em;
+    /* font-weight: bold; */
+    padding-bottom: 1.41575em;
+    letter-spacing: 30px;
+    /* font-family: "Arial" !important; */
+}
+
+div.menus-options div.infos-wrapper section.updates section {
+    list-style: none;
+    margin-bottom: 1.41575em;
+    padding-left: 0;
+    display: block;
+    line-height: 1.41575em;
+}
+
+div.menus-options div.infos-wrapper section.updates section article {
+    border-bottom: 1px solid #e2e2e2;
+    list-style-type: none;
+    margin-bottom: 2.12363em;
+    padding-bottom: 1.06181em;
+    display: block;
+}
+
+div.menus-options div.infos-wrapper section.handouts {
+    padding: 20px 30px;
+    margin: 0;
+    border-radius: 0 4px 4px 0;
+    border-left: 1px solid #ddd;
+    box-shadow: none;
+    font-size: 14px;
+    box-sizing: border-box;
+    display: table-cell;
+    font-family: "Poppins" !important;
+    position: relative;
+    vertical-align: top;
+    width: 23.72881%;
+    background: #f6f6f6;
+}
+
+div.menus-options div.infos-wrapper section.handouts h1 {
+    text-align: left;
+    margin-bottom: 0;
+    padding: 12px 26px 20px 0;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: bold;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+div.menus-options div.infos-wrapper section.handouts ol {
+    margin-bottom: 14px;
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+    padding: 0 0 0 40px;
+}
+
+div.menus-options div.infos-wrapper section.handouts ol ol div {
+    width: 100%;
+    background-color: #ffffff;
+    position: relative;
+    left: -30px;
+    padding: 20px 30px 0 30px;
+    height: 100%;
+}
+
+div.menus-options div.infos-wrapper section.handouts ol ol div ul {
+    border: none;
+    background-color: #ffffff;
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+}
+
+div.menus-options div.infos-wrapper section.handouts ol ol div ul li {
+    padding: 3px 5px;
+    line-height: 1.5em;
+    border-left: 4px solid green;
+    margin-top: 5px;
+    text-align: left;
+}
+
+/* Propriétés css de l'affichage des videos pdf */
+div.section-lecon .content-lecon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+div.section-lecon .content-lecon div.affichage-titre-lecon h2 {
+    text-align: center;
 }

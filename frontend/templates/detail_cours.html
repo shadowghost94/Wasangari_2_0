@@ -1,69 +1,106 @@
 {%extends "base.html"%}{% load static %} {%block corpsDeLaPage%}
+<!--Bande d'affichage du message de succès ou échec d'inscritpion-->
+{% if messages %}
+<div class="messages" id="bande2">
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} mt-2" role="alert">
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
 <div class="conteneur-detail-cours container">
     <div class="col-lg-8">
         <div class="thematiques-detail-cours">
-            <a>Traditions</a>
-            <a>Arts</a>
-            <a>Patrimoine</a>
+            {% for thematique in thematiques %}
+            <a>{{thematique.nom}}</a>
+            {%endfor%}
         </div>
 
         <div class="griotique">
             <div>
-                <h2>
-                    Griot Barasunon, incarnation des Traditions et du Patrimoine
-                    Batonnûm
-                </h2>
-                <p class="id-cours">ID:2999</p>
-            </div>
-            <div>
-                <p>
-                    Venez apprendre l'art griotique, chanter à travers des
-                    mélodies captivante et une maitrise absolue de l'histoire
+                <h2>{{cours.titre}}</h2>
+                <p class="id-cours">
+                    <i class="fa-solid fa-barcode"></i> ID: {{cours.id}}
                 </p>
             </div>
+            <div>
+                <p>{{cours.objectif}}</p>
+            </div>
             <div class="duree-effort-langues">
-                <a><i class="fa-regular fa-clock"></i> Durée: 3 sem </a>
-                <a><i class="fa-solid fa-hammer"></i> Effort: 12 h </a>
-                <a><i class="fa-solid fa-hourglass"></i> Rythme: ~4 h/sem </a>
-                <a><i class="fa-solid fa-book"></i> Langues: Français</a>
+                <a
+                    ><i class="fa-regular fa-clock"></i> Durée: {{cours.duree}}
+                    sem
+                </a>
+                <a
+                    ><i class="fa-solid fa-hammer"></i> Effort: {{cours.effort}}
+                    h
+                </a>
+                <a
+                    ><i class="fa-solid fa-hourglass"></i> Rythme:
+                    ~{{cours.rythme}} h/sem
+                </a>
+                <a><i class="fa-solid fa-book"></i> Langues: {{langue}}</a>
             </div>
         </div>
         <video
-            src="/media/videos-decouvr/chants_danses/BarasunoSeroToru.mp4"
+            src="/media/{{cours.videos}}"
             controls
+            width="640"
+            height="360"
         ></video>
         <div class="ce-qua-apprendre">
+            <!--Ce que vous allez apprendre-->
             <h2>Ce que vous allez apprendre</h2>
             <p>A la fin de ce cours, vous saurez:</p>
             <ul class="normal">
-                <li>chanter,</li>
-                <li>écrire un chanson en votre langue maternel,</li>
-                <li>
-                    communiquer pour voyager (achat de place, négociation de
-                    prix,…)
-                </li>
-                <li>passer une commande au restaurant,</li>
-                <li>acheter des objets ou de la nourriture.</li>
+                {% for x in ce_qua_apprendre%}
+                <li>{{x}}</li>
+                {%endfor%}
             </ul>
-        </div>
-        <!--Description du cours-->
-        <div class="ce-qua-apprendre">
-            <h2>Description du cours</h2>
-            <p>A la fin de ce cours, vous saurez:</p>
-            <ul class="normal">
-                <li>chanter,</li>
-                <li>écrire un chanson en votre langue maternel,</li>
-                <li>
-                    communiquer pour voyager (achat de place, négociation de
-                    prix,…)
-                </li>
-                <li>passer une commande au restaurant,</li>
-                <li>acheter des objets ou de la nourriture.</li>
-            </ul>
-        </div>
-        <!--Plan du cours-->
-        <div class="ce-qua-apprendre">
-            <h2>Plan du cours</h2>
+            <br />
+
+            <!--Description-->
+            <h2>Description</h2>
+            <div>{{cours.description}}</div>
+            <br />
+
+            <!--Prérequis-->
+            <h2>Format</h2>
+            <div>
+                <ul class="normal">
+                    {% for x in format%}
+                    <li>{{x}}</li>
+                    {%endfor%}
+                </ul>
+            </div>
+            <br />
+
+            <!--Prérequis-->
+            <h2>Prérequis</h2>
+            <div>
+                {% if prerequis %} {% for x in prerequis %} {{x}} {%endfor%}
+                {%else%}
+                <p>
+                    Ce cours s’adresse à tous. Il n’y a aucun pré-requis pour le
+                    suivre.
+                </p>
+                {%endif%}
+            </div>
+            <br />
+
+            <!--Evaluation et certification-->
+            <h2>Evaluation et certification</h2>
+            <div>
+                {% if ev_et_cert %} {% for x in ev_et_cert %} {{x}} {%endfor%}
+                {%else%}
+                <p>Le MOOC ne délivre ni badge ni certificat.</p>
+                {%endif%}
+            </div>
+            <br />
+
+            <!--Plan du cours-->
+            <h2 class="plan_du_cours">Plan du cours</h2>
             <p>A la fin de ce cours, vous saurez:</p>
             <ul class="normal">
                 <li>chanter,</li>
@@ -79,27 +116,35 @@
     </div>
     <div class="col-lg-4 labellisation">
         <div class="otherside">
+            {% if cours.certifiante%}
             <img
                 src="{% static 'assets/images/certification-et-label.png'%}"
                 alt="certification-et-label"
             />
-            <button>S'inscrire pour le cours</button>
-            <button onclick="location.href='{% url 'lecon' %}'">
+            {%endif%} {% if not is_registered %}
+            <p>Inscrivez-vous pour accéder au cours !</p>
+            <form action="{%url 'registered_user' cours.id %}" method="POST">
+                {% csrf_token %}
+                <button type="submit">S'inscrire pour le cours</button>
+            </form>
+            {% endif %} {% if is_registered %}
+            <button onclick="location.href='{% url 'lecon' cours.id %}'">
                 Accéder au cours
             </button>
             <p>Vous êtes déjà inscrit à ce cours</p>
-            <button>Se désinscrire de cours</button>
+            <form action="{%url 'unregistered_user' cours.id %}" method="POST">
+                {% csrf_token %}
+                <button>Se désinscrire de cours</button>
+            </form>
+            {% endif %}
         </div>
         <div class="equipe-pedagogique">
             <h3>Equipe pédagogique</h3>
             <div>
                 <div class="equipe-pedagogique-image">
-                    <img
-                        src="{% static 'assets/images/barasunon.jpg'%}"
-                        alt=""
-                    />
-                    <h4>Réné DESCARTES</h4>
-                    <p>Artiste, Chanteur, compositeur</p>
+                    <img src="/media/{{user.photo_de_profil}}" alt="" />
+                    <h4>{{user.first_name}} {{user.last_name}}</h4>
+                    <p>{{user.profession}}</p>
                 </div>
             </div>
         </div>
