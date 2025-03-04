@@ -544,7 +544,7 @@ header#theheader nav.main-nav li.active a {
     -o-transition: all 0.4s;
     -webkit-transition: all 0.4s;
     transition: all 0.4s;
-    background-color: #1e1e1e;
+    background-color: #fff;
     display: block;
     position: absolute;
     width: 30px;
@@ -594,6 +594,7 @@ header#theheader nav.main-nav li.active a {
     transform-origin: 33% 100%;
     top: -10px;
     z-index: 10;
+    background-color: #fff;
 }
 
 .header-area .main-nav .menu-trigger span:after {
@@ -602,12 +603,13 @@ header#theheader nav.main-nav li.active a {
     -webkit-transform-origin: 33% 0;
     transform-origin: 33% 0;
     top: 10px;
+    background-color: #fff;
 }
 
 .header-area .main-nav .menu-trigger.active span,
 .header-area .main-nav .menu-trigger.active span:before,
 .header-area .main-nav .menu-trigger.active span:after {
-    background-color: transparent;
+    /* background-color: #fff; */
     width: 100%;
 }
 
@@ -616,11 +618,11 @@ header#theheader nav.main-nav li.active a {
     -ms-transform: translateY(6px) translateX(1px) rotate(45deg);
     -webkit-transform: translateY(6px) translateX(1px) rotate(45deg);
     transform: translateY(6px) translateX(1px) rotate(45deg);
-    background-color: #1e1e1e;
+    background-color: #fff;
 }
 
 .background-header .main-nav .menu-trigger.active span:before {
-    background-color: #1e1e1e;
+    background-color: #fff;
 }
 
 .header-area .main-nav .menu-trigger.active span:after {
@@ -628,7 +630,7 @@ header#theheader nav.main-nav li.active a {
     -ms-transform: translateY(-6px) translateX(1px) rotate(-45deg);
     -webkit-transform: translateY(-6px) translateX(1px) rotate(-45deg);
     transform: translateY(-6px) translateX(1px) rotate(-45deg);
-    background-color: #1e1e1e;
+    background-color: #fff;
 }
 
 .background-header .main-nav .menu-trigger.active span:after {
@@ -835,6 +837,7 @@ banner
     color: #fff;
     font-size: 20px;
     max-width: 570px;
+    text-align: center;
 }
 
 .main-banner .caption .main-button-red {
@@ -1368,18 +1371,141 @@ section.contact-us .contact-us {
     color: white;
 }
 
-.footer p {
-    text-transform: uppercase;
-    font-size: 14px;
+footer.footer {
+    margin-top: 5%;
+    display: block;
+    background-image: url(../images/meetings-bg.jpg);
+}
+
+footer.footer div.footer-main-div {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+}
+
+footer.footer div.footer-second-div p {
     color: #fff;
-    font-family: Poppins;
+    text-align: center;
+    font-family: "Poppins";
 }
 
-.footer p a {
+footer.footer div.footer-main-div div.body-footer {
+    padding: 0;
+    color: #d2d2d2;
+    font-size: 0.8rem;
+    width: 33%;
+}
+
+footer.footer div.footer-main-div div.body-footer div.body-footer__container {
+    width: 100%;
+    padding-right: 0.625rem;
+    padding-left: 0.625rem;
+    margin-right: auto;
+    margin-left: auto;
+    display: flex;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+footer.footer
+    div.footer-main-div
+    div.body-footer
+    div.body-footer__container
+    div.body-footer__brand {
+    flex-grow: 1;
+    flex-shrink: 0;
+    flex-basis: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    order: 1;
+    justify-content: center;
+    /* align-items: center;
+    text-align: center; */
+}
+
+footer.footer
+    div.footer-main-div
+    div.body-footer
+    div.body-footer__container
+    div.body-footer__menu {
+    width: 100%;
+    order: 2;
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+footer.footer
+    div.footer-main-div
+    div.body-footer
+    div.body-footer__container
+    div.body-footer__menu
+    a
+    img {
+    width: 20%;
+}
+
+footer.footer
+    div.footer-main-div
+    div.body-footer
+    div.body-footer__container
+    div.body-footer__menu
+    a {
+    /* width: 50px; */
+    text-align: center;
+    font-size: 15px;
+    color: rgb(250, 42, 42);
+    font-weight: bold;
+}
+
+footer.footer div.footer-main-div div.body-mentions {
+    margin-top: 3%;
+}
+
+footer.footer div.footer-main-div div.body-mentions ul li {
+    font-size: 13px;
+}
+
+footer.footer div.footer-main-div div.body-mentions h4 {
+    color: #fff;
+}
+
+footer.footer div.footer-main-div div ul li a {
+    color: #fff;
+    font-family: "Poppins";
+}
+
+footer.footer div.footer-main-div div ul li a:hover {
     color: #f5a425;
-    font-family: Poppins;
+}
+/* footer.footer div.body-footer div.body-footer__container div.body-footer__menu */
+
+footer.footer
+    div.footer-main-div
+    div.body-footer
+    div.body-footer__container
+    div.body-footer__brand
+    a {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
 }
 
+footer.footer
+    div.footer-main-div
+    div.body-footer
+    div.body-footer__container
+    div.body-footer__brand
+    img {
+    display: block;
+    margin: 0 0 1rem;
+    width: 12.125rem;
+}
 /*
 ---------------------------------------------
 heading page
@@ -1387,7 +1513,7 @@ heading page
 */
 
 section.heading-page {
-    background-image: url(../images/heading-bg.jpg);
+    /* background-image: url(../images/heading-bg.jpg); */
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -1403,6 +1529,7 @@ section.heading-page h6 {
     font-weight: 600;
     color: #fff;
     letter-spacing: 1px;
+    font-family: "Poppins";
 }
 
 section.heading-page h2 {
@@ -1413,6 +1540,7 @@ section.heading-page h2 {
     font-weight: 800;
     color: #fff;
     letter-spacing: 1px;
+    font-family: "Poppins";
 }
 
 /*
@@ -1456,12 +1584,14 @@ upcoming meetings page
     font-weight: 600;
     display: inline-block;
     margin-bottom: 15px;
+    font-family: "Poppins";
 }
 
 .meeting-item .down-content p {
     margin-left: 50px;
     color: #1f272b;
     font-size: 14px;
+    font-family: "Poppins";
 }
 
 section.meetings-page {
@@ -1481,6 +1611,7 @@ section.meetings-page .filters {
 
 section.meetings-page .filters li {
     font-size: 13px;
+    font-family: "Poppins";
     color: #f5a425;
     background-color: #fff;
     padding: 11px 30px;
@@ -1672,6 +1803,11 @@ section.meetings-page .pagination ul li a:hover {
     .templatemo-item-col {
         width: 45%;
     }
+
+    footer.footer {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 767px) {
@@ -1679,7 +1815,11 @@ section.meetings-page .pagination ul li a:hover {
         width: 100%;
     }
 }
-
+@media (max-width: 993px) {
+    .main-banner .caption {
+        transform: translateY(150px);
+    }
+}
 /* 
 ---------------------------------------------
 responsive
@@ -1808,8 +1948,28 @@ responsive
     .header-area .main-nav .nav li ul.sub-menu li a {
         color: #1f272b;
     }
+
+    #profil-image {
+        display: none;
+    }
 }
 
+@media (max-width: 768px) {
+    footer.footer div.footer-main-div {
+        display: block;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+    }
+}
+
+@media (max-width: 445px) {
+    aside.sidebar-card {
+        display: none;
+    }
+}
 /* Propiétés css pour les sections d'inscription et de connexion */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 
@@ -3187,6 +3347,7 @@ main.main-content header {
 
 main.main-content header p {
     color: #fff;
+    text-align: center;
 }
 
 div.container-card main.main-content div.pagination ul li {
@@ -3238,6 +3399,14 @@ div.section-lecon .sidebar-lecon {
     padding: 10px;
     overflow-y: auto;
 }
+div.section-lecon .sidebar-lecon i.fa-caret-right {
+    color: #f5a425;
+    transition: transform 0.3s ease;
+    transform: rotate(0deg);
+}
+/* div.section-lecon .sidebar-lecon i.fa-caret-right .open .arrow {
+    transform: rotate(90deg);
+} */
 div.section-lecon .sidebar-lecon ul {
     list-style-type: none;
     padding: 0;

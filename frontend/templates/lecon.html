@@ -12,8 +12,8 @@
             <ul>
                 <!-- Glossaire -->
                 <li class="theonesubtitles">
-                    <span class="title" onclick="toggleSubtitles('title')"
-                        >📘 Glossaire</span
+                    <span class="title" onclick="toggleSubtitles('title', this)"
+                        ><i class="fa-solid fa-caret-right"></i> Glossaire</span
                     >
                     <ul class="subtitles" id="title">
                         <li
@@ -29,8 +29,9 @@
                 <li class="theonesubtitles">
                     <span
                         class="title"
-                        onclick="toggleSubtitles('title{{semaine.id}}')"
-                        >📘 Semaine {{semaine.id}} - {{semaine.titre}}</span
+                        onclick="toggleSubtitles('title{{semaine.id}}', this)"
+                        ><i class="fa-solid fa-caret-right"></i> Semaine
+                        {{semaine.id}} - {{semaine.titre}}</span
                     >
                     <ul class="subtitles" id="title{{semaine.id}}">
                         {% for lecon in lecons %}
@@ -202,12 +203,15 @@
 </script>
 <script>
     // Fonction pour afficher ou cacher les sous-titres
-    function toggleSubtitles(id) {
-        const element = document.getElementById(id);
-        if (element.style.display === "block") {
-            element.style.display = "none";
+    function toggleSubtitles(id, element) {
+        const icon = element.querySelector("i");
+        const x = document.getElementById(id);
+        if (x.style.display === "block") {
+            x.style.display = "none";
+            icon.style.transform = "rotate(0deg)";
         } else {
-            element.style.display = "block";
+            x.style.display = "block";
+            icon.style.transform = "rotate(90deg)";
         }
     }
 
@@ -218,7 +222,7 @@
         let contentDiv = document.getElementById("content-lecon");
         contentDiv.innerHTML = "";
         for (let x of content) {
-            contentDiv.innerHTML += `<div>${x}</div>`;
+            contentDiv.innerHTML += `<div><span style="color:#007bff;">✔</span> ${x}</div>`;
         }
     }
 
