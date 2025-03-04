@@ -155,12 +155,14 @@
                                 />
                             </a>
                         </div>
+                        {% if user.is_authenticated%}
                         <div class="body-footer__menu">
                             <a href="{%url 'deconnexion'%}"
                                 ><i class="fa-solid fa-right-from-bracket"></i>
                                 déconnexion</a
                             >
                         </div>
+                        {%endif%}
                     </div>
                 </div>
                 <div class="body-mentions">

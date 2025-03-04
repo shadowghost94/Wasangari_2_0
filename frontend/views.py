@@ -100,7 +100,7 @@ def lecon (request, coursid):
 
 @login_required
 def decouvrir(request):
-    return render(request, 'decouvrir.html')
+    return render(request, 'decouvrir0.html')
 
 def test(request):
     return render(request, 'testfontawesome.html')

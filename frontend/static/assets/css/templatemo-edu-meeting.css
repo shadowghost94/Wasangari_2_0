@@ -1291,6 +1291,7 @@ section.our-facts h2 {
     font-weight: 700;
     letter-spacing: 0.5px;
     margin-bottom: 50px;
+    text-align: center;
 }
 
 .count-area-content {
@@ -1520,6 +1521,7 @@ section.heading-page {
     padding-top: 130px;
     padding-bottom: 40px;
     text-align: center;
+    background-color: transparent;
 }
 
 section.heading-page h6 {
@@ -1969,6 +1971,20 @@ responsive
     aside.sidebar-card {
         display: none;
     }
+
+    main.main-content div.courses {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    section#top .search-bar input {
+        font-size: 10px;
+    }
+
+    section#top .search-bar button {
+        font-size: 10px;
+    }
 }
 /* Propiétés css pour les sections d'inscription et de connexion */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
@@ -2205,14 +2221,14 @@ ul.footer-div2 li {
 /* PRORPIETES CSS DE DETAIL APPRENDRE */
 
 /* bouton search de recherche */
-section#top .search-container {
+section.heading-page .search-container {
     max-width: 800px;
     background: #fff;
     border-radius: 12px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-section#top .search-bar {
+section.heading-page .search-bar {
     display: flex;
     align-items: center;
     border: 2px solid #ddd;
@@ -2226,7 +2242,7 @@ section#top .search-bar:focus-within {
     box-shadow: 0px 0px 8px rgba(0, 115, 230, 0.4);
 }
 
-section#top .search-bar input {
+section.heading-page .search-bar input {
     border: none;
     outline: none;
     flex: 1;
@@ -2238,7 +2254,7 @@ section#top .search-bar input::placeholder {
     color: #999;
 }
 
-section#top .search-bar button {
+section.heading-page .search-bar button {
     background: #f5a425;
     color: #fff;
     border: none;
@@ -2413,7 +2429,7 @@ section#top .search-bar button:hover {
     width: 40%;
 }
 
-/* article */
+/* article - Article Card*/
 
 .modal {
     display: none;
@@ -2451,6 +2467,69 @@ section#top .search-bar button:hover {
     cursor: pointer;
 }
 
+div.container-card main.main-content div.courses div.article-card {
+    background-color: #fff;
+    width: 100%;
+    /* height: 150px; */
+    padding: 1% 2% 1% 2%;
+    border-radius: 8px;
+}
+
+div.container-card
+    main.main-content
+    div.courses
+    div.article-card
+    div.article-main-content {
+    display: flex;
+}
+
+div.container-card
+    main.main-content
+    div.courses
+    div.article-card
+    div.article-main-content
+    div
+    h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.33;
+}
+
+div.container-card
+    main.main-content
+    div.courses
+    div.article-card
+    div.article-main-content
+    div
+    img {
+    width: 100%;
+    height: 100%;
+}
+
+div.container-card
+    main.main-content
+    div.courses
+    div.article-card
+    div.article-second-content
+    p {
+    color: #2a303b;
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+div.container-card
+    main.main-content
+    div.courses
+    div.article-card
+    div.article-third-content
+    p {
+    color: #666e80;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.6;
+    margin-top: 0.8rem;
+}
 /* Propriétés de la page apprendre detail */
 #container-apprendre-detail {
     margin-top: 7%;
