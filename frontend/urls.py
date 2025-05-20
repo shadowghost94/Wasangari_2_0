@@ -12,6 +12,7 @@ urlpatterns = [
     path('apprendre/detail-cours/<int:cours_id>', views.learn_something, name='detail-cours'),
     path('apprendre/detail-cours/lecon/<int:coursid>', views.lecon, name="lecon"),
     path('decouvrir/', views.decouvrir, name='decouvrir'),
+    path('decouvrir/detail-article/', views.decouvrirarticle, name="decouvrirdetailarticle"),
     path('sites/', views.sites, name='sites'),
     path('monuments/', views.monuments, name='monuments'),
     path('musees/', views.musees, name='musees'),

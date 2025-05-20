@@ -1,0 +1,66 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Connexion-Wasangari</title>
+    </head>
+    <body>
+        <div id="se-connecter">
+            <h1>CONNECTEZ-VOUS ICI !</h1>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="iscr">
+                    <div class="iscr-images" id="iscr-image1"></div>
+                    <div class="inscripform">
+                        <form
+                            action="{% url 'connexion'%}"
+                            method="post"
+                            class="signin-form"
+                        >
+                            {%csrf_token%} {{login.as_p}}
+                            <div class="form-group">
+                                <button
+                                    type="submit"
+                                    class="form-control btn submit px-3"
+                                    id="bouton-connexion"
+                                >
+                                    Se connecter
+                                </button>
+                            </div>
+                            <div class="form-group">
+                                <a href="">Mot de passe oublié ?</a>
+                                <p class="rappel">
+                                    Vous n'avez de compte ?
+                                    <a href="#s-inscrire">Inscrivez-vous ici</a>
+                                </p>
+                            </div>
+                        </form>
+                        <div class="login-wrap p-0">
+                            <p class="w-100 text-center">
+                                &mdash; Ou connectez-vous avec &mdash;
+                            </p>
+                            <div
+                                class="social d-flex text-center"
+                                id="facebook-twitter"
+                            >
+                                <a href="#" class="px-2 py-2 mr-md-1 rounded">
+                                    <span class="fab fa-facebook-f mr-2"></span>
+                                    <!-- Utiliser Font Awesome pour l'icône Facebook -->
+                                    Facebook
+                                </a>
+                                <a href="#" class="px-2 py-2 ml-md-1 rounded">
+                                    <span class="fab fa-twitter mr-2"></span>
+                                    <!-- Utiliser Font Awesome pour l'icône Twitter -->
+                                    Twitter
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

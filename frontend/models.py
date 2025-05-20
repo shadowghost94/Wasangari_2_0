@@ -33,7 +33,17 @@ class Ethnies(models.Model):
     def __str__(self):
         return self.nom
 
+#modèle de base pour les objets de types Langues
+class Langues(models.Model):
+    nom = models.CharField(max_length=255, verbose_name="Nom de la langue")
+    ethnie = models.ForeignKey(Ethnies, on_delete=models.DO_NOTHING, related_name="langues")
+
+    def __str__(self):
+        return self.nom
+    
 class User(AbstractUser):
+    # first_name, last_name, email
+
     SEXE = [
         ('Homme', 'Masculin'),
         ('Femme', 'Feminin')
@@ -42,7 +52,7 @@ class User(AbstractUser):
     username = None
     email = models.EmailField(verbose_name="Adresse E-mail", unique=True)
     sexe = models.CharField(max_length=10, choices=SEXE, verbose_name="SEXE")
-    ethnie = models.ForeignKey(Ethnies, on_delete=models.DO_NOTHING, blank=True, null = True)
+    langues = models.ForeignKey(Langues, on_delete=models.DO_NOTHING, blank=True, null = True)
     photo_de_profil = models.ImageField(upload_to='profile_pictures/', blank=True, null=True, verbose_name="Votre photo de profil")
     is_registered = models.BooleanField(default=0, verbose_name="Si l'utilisateur courant est inscrit pour un cours précis")
     profession = models.CharField(max_length=255, default="Historien, Enseignant chercheur à L'université de Parakou")
@@ -54,14 +64,6 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.first_name+" "+self.last_name
-
-#modèle de base pour les objets de types Langues
-class Langues(models.Model):
-    nom = models.CharField(max_length=255, verbose_name="Nom de la langue")
-    ethnie = models.ForeignKey(Ethnies, on_delete=models.DO_NOTHING, related_name="langues")
-
-    def __str__(self):
-        return self.nom
     
 #modèle de base de données pour enregistrer des podcast
 class Podcast(models.Model):

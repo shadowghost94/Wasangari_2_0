@@ -1,15 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.hashers import make_password
 from django.core.mail import send_mail, EmailMessage
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_bytes
-from django.template.loader import render_to_string
 from django.http import JsonResponse
-from .forms import InscriptionForm, LoginForm 
+from .forms import LoginForm 
 import re
 from Wasangari.settings import EMAIL_HOST_USER
 from .token import generatorToken
 
-from django.contrib.sites.shortcuts import get_current_site
 from .models import *
 
 from django.contrib.auth import authenticate, login, logout
@@ -21,9 +19,7 @@ from django.contrib import messages
 
 
 def acceuil(request):
-    form = InscriptionForm()
-    login = LoginForm()
-    return render(request, 'acceuil.html', {"form": form, "login": login})
+    return render(request, 'acceuil.html')
 
 def apprendre(request):
     # l'instruction ci-dessous récupère l'ensemble des cours
@@ -102,6 +98,10 @@ def lecon (request, coursid):
 def decouvrir(request):
     return render(request, 'decouvrir0.html')
 
+@login_required
+def decouvrirarticle(request):
+    return render(request, 'decouvrirarticle.html')
+
 def test(request):
     return render(request, 'testfontawesome.html')
 
@@ -143,53 +143,70 @@ def explorer(request):
 #Vue d'inscription
 def inscription(request):
     if request.method == "POST":
-        form = InscriptionForm(request.POST, request.FILES)
-        loginform = LoginForm() 
-        if form.is_valid():
-            #Création de l'utilisateur
-            #ethnie = Ethnies.objects.get(id=form.ethnie)
-            last_name = form.cleaned_data['last_name']
-            first_name = form.cleaned_data['first_name']
-            email = form.cleaned_data['email']
-            sexe = form.cleaned_data['sexe']
-            ethnie = form.cleaned_data['ethnie']
-            photo_de_profil = form.cleaned_data['photo_de_profil']
-
-            try:
-                user = User.objects.create_user(last_name = last_name, first_name = first_name, email=email, sexe = sexe, ethnie = ethnie, photo_de_profil = photo_de_profil)
-                user.set_password(form.cleaned_data['password'])
-                user.save()
-                messages.success(request, "Inscription réussie !")
-                # Email de bienvenue
-                #envoyer_email(
-                #    "E-mail de bienvenue",
-                #    f"Bonjour {user.first_name} {user.last_name}, bienvenue sur Wassangari.",
-                #    [user.email]
-                #)
-                # Email de confirmation
-                #current_site = get_current_site(request)
-                #email_subject = "Confirmation de votre adresse e-mail"
-                #messageConfirm = render_to_string("emailconfirm.html", {
-                #    "name": user.last_name,
-                #    "domain": current_site,
-                #    "uid": urlsafe_base64_encode(force_bytes(user.pk)),
-                #    "token": generatorToken.make_token(user),
-                #})
-                #envoyer_email(email_subject, messageConfirm, [user.email])
+        try:
+            # Récupération des données
+            nom = request.POST.get('nom')
+            prenom = request.POST.get('prenom')
+            email = request.POST.get('email')
+            sexe = request.POST.get('sexe')
+            langue =Langues.objects.get(pk=int(request.POST.get('langue')))
+            password = request.POST.get('password')
+            confirm_password = request.POST.get('confirm_password')
+            photo = request.FILES.get('photo')
+            
+            # Validation
+            if not all([nom, prenom, email, password, confirm_password]):
+                return JsonResponse({'success': False, 'message': 'Tous les champs obligatoires doivent être remplis'})
                 
-                return redirect("acceuil")
-            except Exception as e:
-                messages.error (request, f"Une erreur s'est produite: {e} Veuillez réessayer l'inscription !")
-                return render(request, 'acceuil.html', {'form': form, 'login': loginform, 'messages':e})
-        else:
-            messages.error(request, "Formulaire invalide !") 
-            return render(request, 'acceuil.html', {'form': form, 'login': loginform, 'messages':e})
+            if password != confirm_password:
+                return JsonResponse({'success': False, 'message': 'Les mots de passe ne correspondent pas'})
+                
+            if len(password) < 8:
+                return JsonResponse({'success': False, 'message': 'Le mot de passe doit contenir au moins 8 caractères'})
+            
+            # Création de l'utilisateur
+            user = User.objects.create(
+                first_name=prenom,
+                last_name=nom,
+                email=email,
+                password=make_password(password),
+                sexe=sexe,
+                langues=langue
+            )
+            
+            if photo:
+                user.photo_de_profil.save(photo.name, photo)
+            
+            return JsonResponse({'success': True, 'message': 'Inscription réussie'})
+            
+        except Exception as e:
+            return JsonResponse({'success': False, 'message': str(e)})
+        
+            # Email de bienvenue
+            #envoyer_email(
+            #    "E-mail de bienvenue",
+            #    f"Bonjour {user.first_name} {user.last_name}, bienvenue sur Wassangari.",
+            #    [user.email]
+            #)
+            # Email de confirmation
+            #current_site = get_current_site(request)
+            #email_subject = "Confirmation de votre adresse e-mail"
+            #messageConfirm = render_to_string("emailconfirm.html", {
+            #    "name": user.last_name,
+            #    "domain": current_site,
+            #    "uid": urlsafe_base64_encode(force_bytes(user.pk)),
+            #    "token": generatorToken.make_token(user),
+            #})
+            #envoyer_email(email_subject, messageConfirm, [user.email])
 
+    else:
+        langues = Langues.objects.all()
+        return render(request, "inscription.html", {'langues': langues})
+    
 #Vue de connexion
 def connexion(request):
     if request.method == "POST":
         login_form = LoginForm(request.POST)
-        form = InscriptionForm()
         
         if login_form.is_valid():
             email = login_form.cleaned_data['username']
@@ -202,13 +219,14 @@ def connexion(request):
                 return redirect('acceuil')                  
             else:
                 messages.error(request, "Adresse e-mail ou mot de passe incorrect !")
-                return render(request, 'acceuil.html', {"form": form, "login": login_form})
+                return render(request, 'acceuil.html')
         else:
             messages.error(request, "Formulaire de connexion invalide !")
-            return render(request, 'acceuil.html', {"form": form, "login": login_form})
+            return render(request, 'acceuil.html')
 
     else:
-        return redirect("acceuil")
+        login_form = LoginForm()
+        return render(request, "connexion.html", {'login': login_form})
 
 #fonction python pour envoyer un e-mail
 def envoyer_email(subject, message, recipient_list):

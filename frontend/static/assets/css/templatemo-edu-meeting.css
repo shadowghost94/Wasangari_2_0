@@ -1345,33 +1345,6 @@ contact us
 --------------------------------------------- 
 */
 
-section.contact-us {
-    background-image: url(../images/meetings-bg.jpg);
-    background-position: center center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-    padding: 140px 0px 0px 0px;
-}
-
-section.contact-us .contact-us {
-    background-color: #fff;
-    border-radius: 20px;
-    padding: 40px;
-}
-.contact-us h1 {
-    color: white;
-    text-align: center;
-}
-.contact-us div#se-connecter {
-    margin-bottom: 5%;
-}
-.contact-us div#s-inscrire {
-    margin-top: 20%;
-    margin-bottom: 5%;
-    color: white;
-}
-
 footer.footer {
     margin-top: 5%;
     display: block;
@@ -1928,10 +1901,6 @@ responsive
         margin-left: 0px;
         margin-top: 15px;
     }
-
-    section.contact-us #contact {
-        margin-bottom: 30px;
-    }
 }
 
 @media (max-width: 767px) {
@@ -1986,61 +1955,7 @@ responsive
         font-size: 10px;
     }
 }
-/* Propiétés css pour les sections d'inscription et de connexion */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
 
-.iscr {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding-right: 5%;
-    padding-left: 5%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    flex: 1;
-    overflow: hidden; /* Assure qu'il n'y a pas de scrollbar interne */
-}
-.iscr .iscr-images {
-    width: 55%;
-    height: 100%;
-    background-image: url("../images/foolish.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-}
-
-#sv {
-    width: 30%;
-    height: 260px;
-    margin-top: 6%;
-}
-#sv:hover {
-    width: 30%;
-    height: 320px;
-}
-
-#sv1 {
-    width: 30%;
-    height: 320px;
-    margin-left: 5px;
-    margin-right: 5px;
-}
-#sv1:hover {
-    width: 32%;
-    height: 330px;
-    box-sizing: border-box;
-}
-
-#sv2 {
-    width: 30%;
-    height: 260px;
-    margin-top: 6%;
-}
-#sv2:hover {
-    width: 30%;
-    height: 320px;
-}
 /* bande de réponse qui s'affiche */
 #bande {
     width: 600px;
@@ -2058,92 +1973,7 @@ responsive
     display: none;
     z-index: 1000;
 }
-/* nouveau formulaire d'inscription */
-select option {
-    background-color: #4d5156;
-}
-input {
-    color: black;
-}
-/* propriétés css de la colonne de connexion */
-.inscripform {
-    max-width: 400px;
-    width: 100%;
-    margin: 20px 0;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: rgba(250, 250, 250, 0.15);
-    text-align: center;
-    font-family: "Poppins", sans-serif;
-}
 
-.inscripform .wass {
-    font-size: 24px;
-    font-weight: bold;
-    font-family: "Poppins", sans-serif;
-    /* margin-bottom: 20px; */
-}
-
-.inscripform form div input {
-    width: 100%;
-    padding: 5px;
-    margin: 2px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    appearance: none; /* Supprime le style par défaut du navigateur */
-    -webkit-appearance: none; /* Supprime le style par défaut du navigateur pour Safari */
-    -moz-appearance: none;
-}
-.inscripform form div {
-    background-color: transparent;
-}
-.inscripform form div input,
-.inscripform form div select {
-    border-radius: 40px;
-    height: 50px;
-    color: black;
-    border: 1px solid white;
-    background: rgba(255, 255, 255, 0.08);
-    padding-left: 20px;
-    padding-right: 20px;
-    transition: 0.3s;
-}
-
-.inscripform form div select {
-    background-color: #ccc;
-    color: black;
-}
-.inscripform form button {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: none;
-    border-radius: 30px;
-    /* background-color: #28a745; */
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    overflow-y: auto;
-}
-#bouton-connexion {
-    background-color: #f5a425;
-    color: white;
-}
-
-#button-inscription {
-    background-color: #f5a425;
-}
-.inscripform form button:hover {
-    background-color: #218838;
-}
-div#facebook-twitter a {
-    background-color: #ccc;
-    color: black;
-}
-
-div#facebook-twitter a span:hover {
-    border-radius: 30px;
-}
 .error {
     color: red;
     font-size: 12px;
@@ -2467,19 +2297,20 @@ section#top .search-bar button:hover {
     cursor: pointer;
 }
 
+div.container-card
+    main.main-content
+    div.courses
+    div.article-card
+    div.article-main-content {
+    display: block;
+}
+
 div.container-card main.main-content div.courses div.article-card {
     background-color: #fff;
     width: 100%;
     /* height: 150px; */
     padding: 1% 2% 1% 2%;
     border-radius: 8px;
-}
-
-div.container-card
-    main.main-content
-    div.courses
-    div.article-card
-    div.article-main-content {
     display: flex;
 }
 
@@ -2490,9 +2321,10 @@ div.container-card
     div.article-main-content
     div
     h3 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 800;
     line-height: 1.33;
+    text-align: center;
 }
 
 div.container-card
@@ -2513,7 +2345,7 @@ div.container-card
     div.article-second-content
     p {
     color: #2a303b;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     font-weight: 400;
     line-height: 1.5;
 }
@@ -2529,6 +2361,15 @@ div.container-card
     font-weight: 400;
     line-height: 1.6;
     margin-top: 0.8rem;
+}
+
+div.container-card
+    main.main-content
+    div.courses
+    div.article-card
+    div.article-third-content
+    img {
+    height: 100%;
 }
 /* Propriétés de la page apprendre detail */
 #container-apprendre-detail {
@@ -3154,10 +2995,97 @@ div#popup-overlay-partager div.popup-content p {
     margin-top: 15px;
 }
 
+/* Proprités css de la page dashboard */
 #dashboard-body {
     background-image: url("../images/meetings-bg.jpg");
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
+div.main-dashboard-div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+div.main-dashboard-div aside {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #fff;
+    background-color: white;
+    gap: 10px;
+}
+
+div.main-dashboard-div aside div {
+    width: 100%;
+    height: 40px;
+}
+
+div.main-dashboard-div aside div button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    font-weight: bold;
+    font-family: "Poppins";
+    background-color: transparent;
+}
+
+div.main-dashboard-div aside div:hover {
+    background-color: darkgray;
+    cursor: pointer;
+}
+
+div.main-dashboard-div .second-aside {
+    width: 90%;
+    border: 1px solid #fff;
+    background-color: #fff;
+}
+
+#dashboard-body div.container {
+    width: 100%;
+}
+
+#dashboard-body div.one {
+    display: flex;
+    background-color: #f5a425;
+    padding-right: 1%;
+    padding-left: 1%;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+#dashboard-body div.one div.first-main {
+    display: flex;
+    /* background-color: green; */
+}
+#dashboard-body div.one div.secondsidemain {
+    width: 80%;
+    /* background-color: brown; */
+}
+
+#dashboard-body div.one div.first-main div {
+    display: flex;
+}
+
+#dashboard-body div.one div.first-main div p {
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+#dashboard-body div.one div.first-main div p:hover {
+    color: green;
+}
+
+#dashboard-body div.one div.first-main div img {
+    margin-top: 0px;
+}
+#dashboard-body div.third {
+    background-color: green;
+}
 /* Propriétés css de la section apprendre */
 
 .container-card {
@@ -3295,7 +3223,7 @@ div.conteneur-detail-cours div {
 
 div.conteneur-detail-cours h1,
 p {
-    color: black;
+    color: #6c757d;
 }
 
 div.conteneur-detail-cours video {

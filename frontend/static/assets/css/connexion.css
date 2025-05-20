@@ -1,0 +1,148 @@
+/* Propiétés css pour les sections d'inscription et de connexion */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+body {
+    background-image: url("../images/meetings-bg.jpg");
+}
+div.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    padding-right: 5%;
+    padding-left: 5%;
+    background-color: transparent;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    overflow: hidden; /* Assure qu'il n'y a pas de scrollbar interne */
+}
+
+.container .iscr-images {
+    width: 55%;
+    height: 100%;
+    background-image: url("../images/foolish.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+#sv {
+    width: 30%;
+    height: 260px;
+    margin-top: 6%;
+}
+#sv:hover {
+    width: 30%;
+    height: 320px;
+}
+
+#sv1 {
+    width: 30%;
+    height: 320px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+#sv1:hover {
+    width: 32%;
+    height: 330px;
+    box-sizing: border-box;
+}
+
+#sv2 {
+    width: 30%;
+    height: 260px;
+    margin-top: 6%;
+}
+#sv2:hover {
+    width: 30%;
+    height: 320px;
+}
+
+/* nouveau formulaire d'inscription */
+select option {
+    background-color: #4d5156;
+}
+input {
+    color: black;
+}
+/* propriétés css de la colonne de connexion */
+.inscripform {
+    max-width: 400px;
+    width: 100%;
+    margin: 20px 0;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgba(250, 250, 250, 0.15);
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+}
+
+.inscripform .wass {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: "Poppins", sans-serif;
+    /* margin-bottom: 20px; */
+}
+
+.inscripform form div input {
+    width: 100%;
+    padding: 5px;
+    margin: 2px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    appearance: none; /* Supprime le style par défaut du navigateur */
+    -webkit-appearance: none; /* Supprime le style par défaut du navigateur pour Safari */
+    -moz-appearance: none;
+}
+.inscripform form div {
+    background-color: transparent;
+}
+.inscripform form div input,
+.inscripform form div select {
+    border-radius: 40px;
+    height: 50px;
+    color: black;
+    border: 1px solid white;
+    background: rgba(255, 255, 255, 0.08);
+    padding-left: 20px;
+    padding-right: 20px;
+    transition: 0.3s;
+}
+
+.inscripform form div select {
+    background-color: #ccc;
+    color: black;
+}
+.inscripform form button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 30px;
+    /* background-color: #28a745; */
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    overflow-y: auto;
+}
+#bouton-connexion {
+    background-color: #f5a425;
+    color: white;
+}
+
+#button-inscription {
+    background-color: #f5a425;
+}
+.inscripform form button:hover {
+    background-color: #218838;
+}
+div#facebook-twitter a {
+    background-color: #ccc;
+    color: black;
+}
+
+div#facebook-twitter a span:hover {
+    border-radius: 30px;
+}

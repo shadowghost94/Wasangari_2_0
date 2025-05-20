@@ -136,7 +136,7 @@
         <div class="courses" id="courses">
             <!-- Cards -->
 
-            <a href="">
+            <a href="{% url 'decouvrirdetailarticle' %}">
                 <div class="article-card" id="article-card">
                     <div class="article-main-content">
                         <div>
@@ -145,27 +145,26 @@
                                 concession de l'administration Trump
                             </h3>
                         </div>
-                        <div>
-                            <img
-                                src="{% static 'assets/images/resized_benin.jpeg' %}"
-                                alt="random image"
-                            />
+                        <div class="article-second-content">
+                            <p>
+                                L’altercation avec le président ukrainien,
+                                Volodymyr Zelensky, le 28 février, a illustré le
+                                poids prédominant de l’ancien sénateur de l’Ohio
+                                à la Maison Blanche, qui radicalise la politique
+                                étrangère américaine.
+                            </p>
                         </div>
-                    </div>
-                    <div class="article-second-content">
-                        <p>
-                            L’altercation avec le président ukrainien, Volodymyr
-                            Zelensky, le 28 février, a illustré le poids
-                            prédominant de l’ancien sénateur de l’Ohio à la
-                            Maison Blanche, qui radicalise la politique
-                            étrangère américaine.
-                        </p>
-                    </div>
-                    <div class="article-third-content">
                         <p>
                             Publié aujourd’hui à 06h30, modifié à 09h39 Piotr
                             Smolar
                         </p>
+                    </div>
+
+                    <div class="article-third-content">
+                        <img
+                            src="{% static 'assets/images/resized_benin.jpeg' %}"
+                            alt="random image"
+                        />
                     </div>
                 </div>
             </a>

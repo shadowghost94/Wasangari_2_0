@@ -1,0 +1,346 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Inscription-Wasangari</title>
+        <link
+            rel="stylesheet"
+            href="{% static 'assets/css/inscription.css' %}"
+        />
+        <link
+            href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <div class="container">
+            <div id="s-inscrire">
+                <h1>INSCRIVEZ-VOUS ICI !</h1>
+            </div>
+
+            <div class="container-0">
+                <div class="iscr-images"></div>
+                <div class="form-container">
+                    <div class="progress-bar">
+                        <div class="progress" id="progress"></div>
+                    </div>
+                    <div class="step-indicator" id="stepIndicator">
+                        Étape 1 sur 2
+                    </div>
+
+                    <!-- Première étape du formulaire -->
+                    <div class="form-step visible" id="step1">
+                        <h2 class="form-title">Créez votre compte</h2>
+                        <form method="post" enctype="multipart/form-data">
+                            {%csrf_token%}
+                            <div class="form-group">
+                                <label for="nom">Nom</label>
+                                <input
+                                    type="text"
+                                    id="nom"
+                                    class="form-control"
+                                    required
+                                />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="prenom">Prénom</label>
+                                <input
+                                    type="text"
+                                    id="prenom"
+                                    class="form-control"
+                                    required
+                                />
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    class="form-control"
+                                    required
+                                />
+                            </div>
+
+                            <div class="form-group">
+                                <label>Sexe</label>
+                                <div class="radio-group">
+                                    <div class="radio-option">
+                                        <input
+                                            type="radio"
+                                            id="homme"
+                                            name="sexe"
+                                            value="homme"
+                                            checked
+                                        />
+                                        <label for="homme">Homme</label>
+                                    </div>
+                                    <div class="radio-option">
+                                        <input
+                                            type="radio"
+                                            id="femme"
+                                            name="sexe"
+                                            value="femme"
+                                        />
+                                        <label for="femme">Femme</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="langue">Langues</label>
+                                <select
+                                    id="langue"
+                                    class="form-control"
+                                    required
+                                >
+                                    <option value="" disabled selected>
+                                        Sélectionnez votre langue
+                                    </option>
+                                    {%for langue in langues%}
+                                    <option value="{{langue.id}}">
+                                        {{langue.nom}}
+                                    </option>
+                                    {%endfor%}
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="photo">Photo de profil</label>
+                                <input
+                                    type="file"
+                                    id="photo"
+                                    class="file-input"
+                                    accept="image/*"
+                                />
+                                <label for="photo" class="file-label"
+                                    >Choisir un fichier</label
+                                >
+                                <div class="file-name" id="fileName">
+                                    Aucun fichier sélectionné
+                                </div>
+                            </div>
+
+                            <button class="btn" id="nextBtn">Suivant</button>
+                            <p id="pageconnexion">
+                                Aller à la page de
+                                <a href="{% url 'connexion' %}">connexion</a>
+                            </p>
+                        </form>
+                    </div>
+
+                    <!-- Deuxième étape du formulaire -->
+                    <div class="success-message" id="successMessage">
+                        Inscription réussie ! Redirection en cours...
+                    </div>
+                    <div class="form-step hidden" id="step2">
+                        <h2 class="form-title">Sécurisez votre compte</h2>
+
+                        <div class="form-group">
+                            <label for="password">Mot de passe</label>
+                            <input
+                                type="password"
+                                id="password"
+                                class="form-control"
+                                required
+                                minlength="8"
+                            />
+                            <small style="color: #6c757d; font-size: 12px"
+                                >Minimum 8 caractères</small
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword"
+                                >Confirmer le mot de passe</label
+                            >
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                class="form-control"
+                                required
+                            />
+                        </div>
+
+                        <button class="btn" id="registerBtn">S'inscrire</button>
+                        <button
+                            class="btn"
+                            id="backBtn"
+                            style="background-color: #6c757d; margin-top: 10px"
+                        >
+                            Retour
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Éléments du DOM
+                const step1 = document.getElementById("step1");
+                const step2 = document.getElementById("step2");
+                const nextBtn = document.getElementById("nextBtn");
+                const backBtn = document.getElementById("backBtn");
+                const registerBtn = document.getElementById("registerBtn");
+                const progress = document.getElementById("progress");
+                const stepIndicator = document.getElementById("stepIndicator");
+                const successMessage =
+                    document.getElementById("successMessage");
+                const fileInput = document.getElementById("photo");
+                const fileName = document.getElementById("fileName");
+
+                // Gestion du fichier photo
+                fileInput.addEventListener("change", function (e) {
+                    if (this.files.length > 0) {
+                        fileName.textContent = this.files[0].name;
+                        fileName.style.display = "block";
+                    } else {
+                        fileName.style.display = "none";
+                    }
+                });
+
+                // Bouton Suivant
+                nextBtn.addEventListener("click", function (e) {
+                    e.preventDefault();
+
+                    // Validation simple (vous devriez ajouter une validation plus robuste)
+                    const inputs = step1.querySelectorAll(
+                        "input[required], select[required]"
+                    );
+                    let isValid = true;
+
+                    inputs.forEach((input) => {
+                        if (!input.value) {
+                            input.style.borderColor = "red";
+                            isValid = false;
+                        } else {
+                            input.style.borderColor = "#ddd";
+                        }
+                    });
+
+                    if (isValid) {
+                        step1.classList.remove("visible");
+                        step1.classList.add("hidden");
+
+                        step2.classList.remove("hidden");
+                        step2.classList.add("visible");
+
+                        progress.style.width = "100%";
+                        stepIndicator.textContent = "Étape 2 sur 2";
+                    }
+                });
+
+                // Bouton Retour
+                backBtn.addEventListener("click", function (e) {
+                    e.preventDefault();
+
+                    step2.classList.remove("visible");
+                    step2.classList.add("hidden");
+
+                    step1.classList.remove("hidden");
+                    step1.classList.add("visible");
+
+                    progress.style.width = "50%";
+                    stepIndicator.textContent = "Étape 1 sur 2";
+                });
+
+                // Bouton S'inscrire - Version modifiée pour appeler la vue Django
+                registerBtn.addEventListener("click", async function (e) {
+                    e.preventDefault();
+
+                    const nom = document.getElementById("nom").value;
+                    const prenom = document.getElementById("prenom").value;
+                    const email = document.getElementById("email").value;
+                    const sexeRadio = document.querySelector(
+                        'input[name="sexe"]:checked'
+                    ).value;
+                    const token_middle = document.querySelector(
+                        "[name=csrfmiddlewaretoken]"
+                    ).value;
+                    const langue = document.getElementById("langue").value;
+
+                    const password = document.getElementById("password").value;
+                    const confirmPassword =
+                        document.getElementById("confirmPassword").value;
+
+                    if (password !== confirmPassword) {
+                        alert("Les mots de passe ne correspondent pas");
+                        return;
+                    }
+
+                    if (password.length < 8) {
+                        alert(
+                            "Le mot de passe doit contenir au moins 8 caractères"
+                        );
+                        return;
+                    }
+
+                    // Récupération de toutes les données du formulaire
+                    const formData = new FormData();
+
+                    // Ajout des données de l'étape 1
+                    formData.append("nom", nom);
+                    formData.append("prenom", prenom);
+                    formData.append("email", email);
+                    formData.append("sexe", sexeRadio);
+
+                    formData.append("langue", langue);
+
+                    // Ajout des données de l'étape 2
+                    formData.append("password", password);
+                    formData.append("confirm_password", confirmPassword);
+
+                    // Ajout du fichier photo si existant
+                    if (fileInput.files.length > 0) {
+                        formData.append("photo", fileInput.files[0]);
+                    }
+
+                    // Ajout du token CSRF
+                    formData.append("csrfmiddlewaretoken", token_middle);
+
+                    try {
+                        // Envoi des données à la vue Django
+                        const response = await fetch(
+                            "{% url 'inscription' %}",
+                            {
+                                method: "POST",
+                                body: formData,
+                                headers: {
+                                    "X-Requested-With": "XMLHttpRequest",
+                                },
+                            }
+                        );
+
+                        const data = await response.json();
+
+                        if (response.ok && data.success) {
+                            // Affichage du message de succès
+
+                            successMessage.style.display = "block";
+
+                            // Redirection après 3 secondes
+                            setTimeout(() => {
+                                window.location.href =
+                                    "{% url 'inscription' %}";
+                            }, 3000);
+                        } else {
+                            // Affichage des erreurs
+                            alert(
+                                data.message || "Erreur lors de l'inscription"
+                            );
+                        }
+                    } catch (error) {
+                        console.error("Erreur:", error);
+                        alert(
+                            "Une erreur s'est produite lors de l'envoi du formulaire"
+                        );
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
